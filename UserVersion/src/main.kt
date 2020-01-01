@@ -4,12 +4,12 @@ import javafx.scene.Scene
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 
-class MPlayer : Application() {
+class YachtShop : Application() {
     @Throws(Exception::class)
     override fun start(primaryStage: Stage) {
-        val loader = FXMLLoader(javaClass.getResource("resources/MainUI.fxml"))
+        val loader = FXMLLoader(javaClass.getResource("resources/FXML/BaseUI.fxml"))
         val root : Parent = loader.load()
-        val scene = Scene(root, 320.0, 400.0 )
+        val scene = Scene(root, 1000.0, 600.0 )
         primaryStage.scene = scene
         primaryStage.show()
     }
@@ -17,7 +17,7 @@ class MPlayer : Application() {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            launch(MPlayer::class.java)
+            launch(YachtShop::class.java)
         }
     }
 }
