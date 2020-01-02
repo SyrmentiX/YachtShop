@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="basic setup">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Factory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Yacht.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UserVersion/MPlayer$Companion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UserVersion/MPlayer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/FXML/BaseUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/FXML/BaseUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,10 +15,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
-        <option value="Kotlin Class" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin File" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -104,7 +101,26 @@
       <option name="presentableId" value="Default" />
       <updated>1577784780236</updated>
     </task>
+    <task id="LOCAL-00001" summary="basic setup">
+      <created>1577864392125</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1577864392125</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="SHOW_OTHER_BRANCHES" value="true" />
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="basic setup" />
@@ -115,25 +131,57 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="83" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1577785735490" />
-    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1577864257119">
+    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1577941609148">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1577864257119" />
-    <state width="1557" height="272" key="GridCell.Tab.0.bottom" timestamp="1577864378778">
+    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1577941609148" />
+    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1577864475064">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="272" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1577864378778" />
-    <state width="1557" height="272" key="GridCell.Tab.0.center" timestamp="1577864378778">
+    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1577864475064" />
+    <state width="1557" height="186" key="GridCell.Tab.0.bottom" timestamp="1577941624984">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="272" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1577864378778" />
-    <state width="1557" height="272" key="GridCell.Tab.0.left" timestamp="1577864378778">
+    <state width="1557" height="186" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1577941624984" />
+    <state width="1557" height="186" key="GridCell.Tab.0.center" timestamp="1577941624984">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="272" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1577864378778" />
-    <state width="1557" height="272" key="GridCell.Tab.0.right" timestamp="1577864378778">
+    <state width="1557" height="186" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1577941624984" />
+    <state width="1557" height="186" key="GridCell.Tab.0.left" timestamp="1577941624983">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="272" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1577864378778" />
+    <state width="1557" height="186" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1577941624983" />
+    <state width="1557" height="186" key="GridCell.Tab.0.right" timestamp="1577941624984">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="186" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1577941624984" />
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1577940178565">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1577940178565" />
+    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1577940178564">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1577940178564" />
+    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1577940178563">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1577940178563" />
+    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1577940178564">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1577940178564" />
+    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577878281613">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1577878281613" />
+    <state x="456" y="195" key="run.anything.popup" timestamp="1577940303420">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1577940303420" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1577935129202">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1577935129202" />
   </component>
 </project>
