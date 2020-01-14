@@ -1,10 +1,7 @@
 package resources.controller
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import javafx.fxml.FXML
 import javafx.geometry.Insets
-import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.scene.control.Button
 import javafx.scene.layout.*
@@ -17,7 +14,7 @@ class BaseUIController : Base() {
     lateinit var profileButton : Button
 
     @FXML
-    lateinit var bucketButton : Button
+    lateinit var directoryButton : Button
 
     @FXML
     lateinit var orderButton : Button
@@ -33,7 +30,7 @@ class BaseUIController : Base() {
         menuPane.background = Background(BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY))
         profileButton.text = userName
 
-        orderButton.setOnAction {
+        directoryButton.setOnAction {
             displayPane.children.clear()
             for (boat in databaseGetter.getBoats()) {
                 val yacht = Yacht(boat)
@@ -57,21 +54,13 @@ class BaseUIController : Base() {
             }
         }
 
-        bucketButton.setOnAction {
+        orderButton.setOnAction {
             displayPane.children.clear()
             if (addedYacht.isNotEmpty()) {
                 for (yacht in addedYacht) {
                     val orderCard = OrderCard(yacht)
-                    orderCard.getDeleteButton().setOnAction {
-                        displayPane.children.remove(orderCard.card)
-                        addedYacht.remove(orderCard.yacht)
-                        if (addedYacht.isEmpty()) {
-                            displayPane.children.clear()
-                        }
-                    }
                     displayPane.children.add(orderCard.card)
                 }
-                displayPane.children.add(fabric.getBuyPane())
             }
         }
         profileButton.setOnAction {

@@ -1,6 +1,7 @@
 package resources
 import javafx.scene.control.Button
 import javafx.scene.control.CheckBox
+import javafx.scene.control.Label
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
@@ -22,8 +23,8 @@ class YachtCard(var yacht: Yacht) {
 class OrderCard(var yacht: Yacht) {
     var card : AnchorPane = fabric.getOrderCard(yacht)
 
-    fun getDeleteButton() : Button {
-        return (((card.children[0] as HBox).children[1] as VBox).children[1] as Button)
+    fun setOrderState(state : String) {
+        (((card.children[0] as HBox).children[2] as VBox).children[0] as Label).text = state
     }
 }
 

@@ -12,7 +12,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="bucketButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Корзина">
+      <Button fx:id="directoryButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="200.0" text="Каталог">
          <VBox.margin>
             <Insets top="2.0" />
          </VBox.margin>

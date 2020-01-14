@@ -136,21 +136,22 @@ class Factory {
                                 prefHeight = 100.0
                                 val yachtName = object : Label() {
                                     init {
+                                        prefWidth = 400.0
                                         prefHeight = 60.0
                                         font = Font.font("System", 30.0)
                                         text = yacht.name
                                     }
                                 }
-                                val deleteButton = object : Button() {
+                                val yachtPrice = object : Label() {
                                     init {
-                                        id = "deleteButton"
-                                        prefWidth = 100.0
-                                        prefHeight = 20.0
-                                        text = "Убрать"
+                                        prefWidth = 400.0
+                                        prefHeight = 40.0
+                                        text = "Цена: " + yacht.price + " руб."
+                                        font = Font.font("Comic Sans MS", 20.0)
                                         setMargin(this, Insets(5.0, 0.0, 0.0, 0.0))
                                     }
                                 }
-                                children.addAll(yachtName, deleteButton)
+                                children.addAll(yachtName, yachtPrice)
                             }
                         }
 
@@ -158,40 +159,29 @@ class Factory {
                             init {
                                 prefWidth = 150.0
                                 prefHeight = 100.0
-                                val yachtPrice = object : Label() {
+                                val orderState = object : Label() {
                                     init {
                                         prefWidth = 150.0
-                                        prefHeight = 100.0
-                                        font = Font.font("System", 20.0)
+                                        prefHeight = 60.0
                                         alignment = Pos.CENTER
-                                        text = yacht.price.toString() + " руб."
+                                        text = "None"
                                     }
                                 }
-                                children.addAll(yachtPrice)
+                                val detailsButton = object : Button() {
+                                    init {
+                                        text = "Подробнее"
+                                        prefWidth = 80.0
+                                        prefHeight = 20.0
+                                        setMargin(this, Insets(5.0, 0.0, 0.0, 35.0))
+                                    }
+                                }
+                                children.addAll(orderState, detailsButton)
                             }
                         }
                         children.addAll(leftArea, centerArea, rightArea)
                     }
                 }
                 children.add(yachtInfo)
-            }
-        }
-    }
-
-    fun getBuyPane() : HBox {
-        return object : HBox() {
-            init {
-                prefWidth = 800.0
-                prefHeight = 100.0
-                val buyButton = object : Button() {
-                    init {
-                        text = "Купить"
-                        prefWidth = 100.0
-                        prefHeight = 20.0
-                        setMargin(this, Insets(10.0, 0.0, 0.0, 350.0))
-                    }
-                }
-                children.add(buyButton)
             }
         }
     }
