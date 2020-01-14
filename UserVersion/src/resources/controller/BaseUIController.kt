@@ -1,17 +1,16 @@
 package resources.controller
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import javafx.fxml.FXML
 import javafx.geometry.Insets
+import javafx.scene.Parent
+import javafx.scene.Scene
 import javafx.scene.control.Button
-import javafx.scene.image.Image
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
-import resources.Factory
-import resources.OrderCard
-import resources.Yacht
-import resources.YachtCard
-
-val fabric = Factory()
+import javafx.stage.Stage
+import resources.*
 
 class BaseUIController : Base() {
     @FXML
@@ -33,33 +32,26 @@ class BaseUIController : Base() {
         profileButton.background = Background(BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY))
         menuPane.background = Background(BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY))
         profileButton.text = userName
+
         orderButton.setOnAction {
             displayPane.children.clear()
             //todo Add server part
-            val yacht = Yacht()
-            yacht.name = "TEST"
-            yacht.creator = "TEST"
-            yacht.dateOfCreation = "TEST"
-            yacht.other = "TEST"
-            yacht.price = 500000
-            yacht.image = Image("resources/assert/test.png")
+            for (boat in databaseGetter.getBoats()) {
+                val yacht = Yacht(boat)
+                val yachtCard = YachtCard(yacht)
+                yachtCard.getBucketButton().setOnAction {
+                    val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id))
+                    val scene = Scene(buyWindow.getWindow())
+                    val stage = Stage()
+                    stage.scene = scene
+                    stage.showAndWait()
+                    //addedYacht.add(yachtCard.yacht)
+                }
+                yachtCard.getDescriptionButton().setOnAction { println("not working") }
+                displayPane.children.add(yachtCard.card)
+            }
 
-            val yacht2 = Yacht()
-            yacht2.name = "TEST"
-            yacht2.creator = "TEST"
-            yacht2.dateOfCreation = "TEST"
-            yacht2.other = "TEST"
-            yacht2.price = 100000
-            yacht2.image = Image("resources/assert/test.png")
             //todo until
-            val yachtCard = YachtCard(yacht)
-            val yachtCard2 = YachtCard(yacht2)
-            yachtCard.getBucketButton().setOnAction { addedYacht.add(yachtCard.yacht) }
-            yachtCard.getDescriptionButton().setOnAction { println("not working") }
-            yachtCard2.getBucketButton().setOnAction { addedYacht.add(yachtCard2.yacht) }
-            yachtCard2.getDescriptionButton().setOnAction { println("not working") }
-            displayPane.children.add(yachtCard.card)
-            displayPane.children.add(yachtCard2.card)
         }
 
         bucketButton.setOnAction {
@@ -83,6 +75,5 @@ class BaseUIController : Base() {
             //todo ask if needed
             displayPane.children.clear()
         }
-        //DEEPSKYBLUE
     }
 }
