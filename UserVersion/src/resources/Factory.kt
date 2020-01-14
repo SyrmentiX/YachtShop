@@ -203,6 +203,7 @@ class Factory {
                 prefHeight = 20.0
                 val checkBox = object : CheckBox() {
                     init {
+                        setMargin(this, Insets(10.0, 0.0, 0.0, 20.0))
                         prefWidth = 195.0
                         prefHeight = 20.0
                         text = accessory.accName
@@ -211,10 +212,9 @@ class Factory {
                 val accessoryPrice = object : Label() {
                     init {
                         text = accessory.price.toString()
-                        setMargin(this, Insets(2.0, 0.0, 0.0, 15.0))
+                        setMargin(this, Insets(12.0, 0.0, 0.0, 15.0))
                     }
                 }
-                setMargin(this, Insets(10.0, 0.0, 0.0, 20.0))
                 children.addAll(checkBox, accessoryPrice)
             }
         }
@@ -231,28 +231,11 @@ class Factory {
             init {
                 prefWidth = 300.0
                 prefHeight = 460.0
-                val top = object : HBox() {
-                    init {
-                        prefWidth = 300.0
-                        prefHeight = 20.0
-                        val closeButton = object : Button() {
-                            init {
-                                prefWidth = 20.0
-                                prefHeight = 20.0
-                                setMargin(this, Insets(10.0, 0.0, 0.0, 280.0))
-                                text = "X"
-                            }
-                        }
-                        children.add(closeButton)
-                    }
-                }
-                this.top = top
-
                 val center = object : VBox() {
                     init {
                         prefHeight = 400.0
-                        prefWidth = 295.0
-                        setMargin(this, Insets(10.0, 0.0, 0.0, 5.0))
+                        prefWidth = 315.0
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 5.0))
                     }
                 }
                 this.center = center

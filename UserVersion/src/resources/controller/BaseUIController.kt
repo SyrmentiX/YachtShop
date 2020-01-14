@@ -35,23 +35,26 @@ class BaseUIController : Base() {
 
         orderButton.setOnAction {
             displayPane.children.clear()
-            //todo Add server part
             for (boat in databaseGetter.getBoats()) {
                 val yacht = Yacht(boat)
                 val yachtCard = YachtCard(yacht)
+
                 yachtCard.getBucketButton().setOnAction {
-                    val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id))
-                    val scene = Scene(buyWindow.getWindow())
+                    val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
                     val stage = Stage()
+                    buyWindow.getBuyButton().setOnAction {
+                        buyWindow.addSelectedAccessory()
+                        addedYacht.add(buyWindow.getYacht())
+                        stage.close()
+                    }
+                    val scene = Scene(buyWindow.getWindow())
                     stage.scene = scene
                     stage.showAndWait()
-                    //addedYacht.add(yachtCard.yacht)
+
                 }
                 yachtCard.getDescriptionButton().setOnAction { println("not working") }
                 displayPane.children.add(yachtCard.card)
             }
-
-            //todo until
         }
 
         bucketButton.setOnAction {

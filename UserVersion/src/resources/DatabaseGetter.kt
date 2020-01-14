@@ -27,6 +27,7 @@ class DatabaseGetter {
                 for (accessory in accessoryList) {
                     if (accessory.accessoryId1 == fit.accessoryId) {
                         chosenAccessory.add(accessory)
+                        break
                     }
                 }
             }

@@ -2,7 +2,7 @@ package resources
 
 import java.net.URL
 
-class Sender() {
+class Sender {
     companion object {
         fun send(tables: Tables, id : Int? = null) : String {
             return try {

@@ -27,7 +27,7 @@ class OrderCard(var yacht: Yacht) {
     }
 }
 
-class AdditionCard(var accessory : AccessoryId) {
+class AccessoryCard(var accessory : AccessoryId) {
     var card : HBox = fabric.getAccessoryCard(accessory)
 
     fun getCheckBox() : CheckBox {
