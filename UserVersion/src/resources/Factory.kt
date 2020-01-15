@@ -2,20 +2,18 @@ package resources
 
 import javafx.geometry.Insets
 import javafx.geometry.Pos
-import javafx.scene.control.Button
-import javafx.scene.control.CheckBox
-import javafx.scene.control.Label
+import javafx.scene.control.*
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.scene.text.Font
 
 class Factory {
-    fun getYachtCard(yacht : Yacht) : AnchorPane {
-        return object : AnchorPane() {
+    fun getYachtCard(yacht : Yacht) : VBox {
+        return object : VBox() {
             init {
                 width = 390.0
                 height = 200.0
-                VBox.setMargin(this, Insets(5.0, 0.0, 0.0, 0.0))
+                setMargin(this, Insets(5.0, 0.0, 0.0, 0.0))
                 val yachtName = object : Label() {
                     init {
                         prefWidth = 390.0
@@ -27,7 +25,6 @@ class Factory {
 
                 val yachtInfo = object : HBox() {
                     init {
-                        layoutY = 30.0
                         prefWidth = 390.0
                         prefHeight = 170.0
                         val leftArea = object : VBox() {
@@ -205,12 +202,6 @@ class Factory {
         }
     }
 
-    fun getDiscriptionPane() : AnchorPane {
-        return object : AnchorPane() {
-            //todo ask how that will look
-        }
-    }
-
     fun getAccessoryWindow() : BorderPane {
         return object : BorderPane() {
             init {
@@ -311,6 +302,79 @@ class Factory {
                         this.children.addAll(totalPrice, metaInfo)
                     }
                 }
+            }
+        }
+    }
+
+    fun getLoginCard() : VBox {
+        return object : VBox() {
+            init {
+                prefHeight = 600.0
+                prefWidth = 800.0
+
+                val shopName = object : Label() {
+                    init {
+                        prefWidth = 400.0
+                        prefHeight = 40.0
+                        alignment = Pos.CENTER
+                        setMargin(this, Insets(150.0, 0.0, 0.0, 200.0))
+                        font = Font.font("Comic Sans MS", 24.0)
+                        text = "Наш магазин 'У Пупы и Лупы'"
+                    }
+                }
+
+                val loginField = object : TextField() {
+                    init {
+                        minWidth = 400.0
+                        minHeight = 30.0
+                        maxWidth = 400.0
+                        maxHeight = 30.0
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                        font = Font.font("Comic Sans MS", 14.0)
+                        promptText = "Логин"
+                    }
+                }
+
+                val passwordField = object : PasswordField() {
+                    init {
+                        minWidth = 400.0
+                        minHeight = 30.0
+                        maxWidth = 400.0
+                        maxHeight = 30.0
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                        font = Font.font("Comic Sans MS", 14.0)
+                        promptText = "Пароль"
+                    }
+                }
+
+                val buttonBox = object : HBox() {
+                    init {
+                        minWidth = 400.0
+                        minHeight = 40.0
+                        maxWidth = 400.0
+                        maxHeight = 40.0
+                        VBox.setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+
+                        val loginButton = object : Button() {
+                            init {
+                                prefWidth = 150.0
+                                prefHeight = 40.0
+                                text = "Войти"
+                            }
+                        }
+
+                        val registerButton = object : Button() {
+                            init {
+                                prefWidth = 150.0
+                                prefHeight = 40.0
+                                text = "Регистрация"
+                                setMargin(this, Insets(0.0, 0.0, 0.0, 100.0))
+                            }
+                        }
+                        this.children.addAll(loginButton, registerButton)
+                    }
+                }
+                this.children.addAll(shopName, loginField, passwordField, buttonBox)
             }
         }
     }
