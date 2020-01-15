@@ -47,7 +47,6 @@ class BaseUIController : Base() {
                     val scene = Scene(buyWindow.getWindow())
                     stage.scene = scene
                     stage.showAndWait()
-
                 }
                 yachtCard.getDescriptionButton().setOnAction { println("not working") }
                 displayPane.children.add(yachtCard.card)

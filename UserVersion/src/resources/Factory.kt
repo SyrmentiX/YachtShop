@@ -6,10 +6,7 @@ import javafx.scene.control.Button
 import javafx.scene.control.CheckBox
 import javafx.scene.control.Label
 import javafx.scene.image.ImageView
-import javafx.scene.layout.AnchorPane
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.HBox
-import javafx.scene.layout.VBox
+import javafx.scene.layout.*
 import javafx.scene.text.Font
 
 class Factory {
@@ -251,6 +248,69 @@ class Factory {
                     }
                 }
                 this.bottom = bottom
+            }
+        }
+    }
+
+    fun getOrderDescriptionWindow(yacht: Yacht) : BorderPane {
+        return object : BorderPane() {
+            init {
+                this.top = object : Label() {
+                    init {
+                        text = yacht.name
+                        prefWidth = 300.0
+                        prefHeight = 30.0
+                        alignment = Pos.CENTER
+                        setMargin(this, Insets(5.0, 0.0,0.0,0.0))
+                    }
+                }
+
+                this.center = object : VBox() {
+                    init {
+                        prefWidth = 100.0
+                        prefHeight = 370.0
+                    }
+                }
+
+                this.bottom = object : VBox() {
+                    init {
+                        prefHeight = 75.0
+                        prefWidth = 300.0
+                        val totalPrice = object : Label() {
+                            init {
+                                prefWidth = 295.0
+                                prefHeight = 30.0
+                                alignment = Pos.CENTER_RIGHT
+                            }
+                        }
+
+                        val metaInfo = object : HBox() {
+                            init {
+                                prefHeight = 40.0
+                                prefWidth = 300.0
+                                val payCheck = object : CheckBox() {
+                                    init {
+                                        text = "Оплата"
+                                        prefWidth = 215.0
+                                        prefHeight = 40.0
+                                        setMargin(this, Insets(5.0,0.0,0.0,5.0))
+                                    }
+                                }
+
+                                val closeButton = object : Button() {
+                                    init {
+                                        text = "Закрыть"
+                                        prefWidth = 70.0
+                                        prefHeight = 20.0
+                                        setMargin(this, Insets(10.0,0.0,0.0,0.0))
+                                    }
+                                }
+                                this.children.addAll(payCheck, closeButton)
+                            }
+                        }
+                        this.children.addAll(totalPrice, metaInfo)
+                    }
+                }
             }
         }
     }

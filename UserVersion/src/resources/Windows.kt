@@ -6,8 +6,8 @@ import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 
-val beginSentence = "Цена: "
-val endSentence = " руб."
+const val beginSentence = "Цена: "
+const val endSentence = " руб."
 
 class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
     private val window = fabric.getAccessoryWindow()
@@ -65,3 +65,5 @@ class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
         return ((window.bottom as HBox).children[0] as Label)
     }
 }
+
+class orderDescriptionWindow(){}

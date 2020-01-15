@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="Added">
+    <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/101/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/101/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/101/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/201/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/201/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/201/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/202/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/202/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/202/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/301/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/301/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/301/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/302/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/302/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/302/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/303/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/303/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/assert/yachtPic/303/3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/Cards.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Cards.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/DatabaseClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/DatabaseClasses.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/DatabaseGetter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/DatabaseGetter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UserVersion/META-INF/UserVersion.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Factory.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/Windows.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Windows.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" afterDir="false" />
@@ -39,8 +55,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -51,20 +67,7 @@
       <recent name="D:\Semister work\UserVersion\src\resources\FXML" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.YachtShop">
-    <configuration name="MPlayer" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
-      <module name="UserVersion" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="MPlayer" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="YachtShop" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="UserVersion" />
       <option name="VM_PARAMETERS" value="" />
@@ -78,14 +81,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Kotlin.MPlayer" />
-      <item itemvalue="Kotlin.YachtShop" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.YachtShop" />
-        <item itemvalue="Kotlin.MPlayer" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579015849697</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added totalPrice to Accessory Window">
+      <created>1579053541732</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1579053541732</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -176,13 +181,14 @@
     <MESSAGE value="add server request and accessory" />
     <MESSAGE value="ability to add accessory to purchase" />
     <MESSAGE value="Change Bucket into Order and redesign mainWindow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change Bucket into Order and redesign mainWindow" />
+    <MESSAGE value="Added totalPrice to Accessory Window" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added totalPrice to Accessory Window" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="254" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578975807651">
+    <state x="254" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579058561897">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="254" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1578975807651" />
+    <state x="254" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1579058561897" />
     <state x="591" y="147" key="#com.intellij.ide.util.MemberChooser" timestamp="1577953906631">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -191,10 +197,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="83" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1577785735490" />
-    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579053387441">
+    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579053540047">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579053387441" />
+    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579053540047" />
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1577864475064">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -203,22 +209,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="506" y="172" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1578975119674" />
-    <state width="1557" height="134" key="GridCell.Tab.0.bottom" timestamp="1579053392113">
+    <state width="1557" height="134" key="GridCell.Tab.0.bottom" timestamp="1579058607077">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="134" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579053392113" />
-    <state width="1557" height="134" key="GridCell.Tab.0.center" timestamp="1579053392112">
+    <state width="1557" height="134" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579058607077" />
+    <state width="1557" height="134" key="GridCell.Tab.0.center" timestamp="1579058607076">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="134" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579053392112" />
-    <state width="1557" height="134" key="GridCell.Tab.0.left" timestamp="1579053392112">
+    <state width="1557" height="134" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579058607076" />
+    <state width="1557" height="134" key="GridCell.Tab.0.left" timestamp="1579058607076">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="134" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579053392112" />
-    <state width="1557" height="134" key="GridCell.Tab.0.right" timestamp="1579053392113">
+    <state width="1557" height="134" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579058607076" />
+    <state width="1557" height="134" key="GridCell.Tab.0.right" timestamp="1579058607077">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="134" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579053392113" />
+    <state width="1557" height="134" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579058607077" />
     <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1579016306347">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -235,10 +241,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1579016306347" />
-    <state x="280" y="5" key="SettingsEditor" timestamp="1578969114595">
+    <state x="280" y="5" key="SettingsEditor" timestamp="1579054782528">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="280" y="5" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1578969114595" />
+    <state x="280" y="5" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1579054782528" />
     <state x="496" y="255" key="com.intellij.ide.util.TipDialog" timestamp="1579042879742">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
