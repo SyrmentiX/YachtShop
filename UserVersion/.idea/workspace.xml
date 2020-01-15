@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="add login">
+    <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/Cards.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Cards.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Factory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1Vk6Wu9Vzclm6fmGQaZATm0NSxD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -154,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579061353019</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add login card">
+      <created>1579089777749</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1579089777749</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -179,7 +185,8 @@
     <MESSAGE value="Added totalPrice to Accessory Window" />
     <MESSAGE value="add yacht pic" />
     <MESSAGE value="add order description button" />
-    <option name="LAST_COMMIT_MESSAGE" value="add order description button" />
+    <MESSAGE value="add login card" />
+    <option name="LAST_COMMIT_MESSAGE" value="add login card" />
   </component>
   <component name="WindowStateProjectService">
     <state x="254" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579058561897">
@@ -194,10 +201,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="83" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1577785735490" />
-    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579089716140">
+    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579089776522">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579089716140" />
+    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579089776522" />
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1577864475064">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -206,22 +213,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="506" y="172" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1578975119674" />
-    <state width="1557" height="10" key="GridCell.Tab.0.bottom" timestamp="1579089734687">
+    <state width="1557" height="10" key="GridCell.Tab.0.bottom" timestamp="1579090099824">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="10" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579089734687" />
-    <state width="1557" height="10" key="GridCell.Tab.0.center" timestamp="1579089734687">
+    <state width="1557" height="10" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579090099824" />
+    <state width="1557" height="10" key="GridCell.Tab.0.center" timestamp="1579090099824">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="10" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579089734687" />
-    <state width="1557" height="10" key="GridCell.Tab.0.left" timestamp="1579089734686">
+    <state width="1557" height="10" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579090099824" />
+    <state width="1557" height="10" key="GridCell.Tab.0.left" timestamp="1579090099823">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="10" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579089734686" />
-    <state width="1557" height="10" key="GridCell.Tab.0.right" timestamp="1579089734687">
+    <state width="1557" height="10" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579090099823" />
+    <state width="1557" height="10" key="GridCell.Tab.0.right" timestamp="1579090099824">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="10" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579089734687" />
+    <state width="1557" height="10" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579090099824" />
     <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1579016306347">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -238,6 +245,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1579016306347" />
+    <state x="152" y="74" key="MergeDialog" timestamp="1579090060130">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="152" y="74" key="MergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579090060130" />
+    <state x="512" y="147" key="MultipleFileMergeDialog" timestamp="1579090060141">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="512" y="147" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579090060141" />
     <state x="280" y="5" key="SettingsEditor" timestamp="1579054782528">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -246,10 +261,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="496" y="255" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1579042879742" />
-    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578993672891">
+    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579089783250">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1578993672891" />
+    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1579089783250" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1578977756919">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
