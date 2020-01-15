@@ -17,7 +17,8 @@ enum class Tables(val tableName : String) {
     productionProcess("ProductionProcess"), // Стадия процесса производства в виде строки.
     salesPerson("SalesPerson"), // Тот кто продал лодку.
     vat("Vat"), // НДС.
-    wood("Wood") // Дерево в виде строки.
+    wood("Wood"), // Дерево в виде строки.
+    order("Orders") // Дерево в виде строки.
 }
 
 class AccessoryId

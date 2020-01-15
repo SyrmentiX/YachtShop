@@ -59,6 +59,7 @@ class BaseUIController : Base() {
             if (addedYacht.isNotEmpty()) {
                 for (yacht in addedYacht) {
                     val orderCard = OrderCard(yacht)
+                    orderCard.setOrderState("Ожидает оплаты")
                     displayPane.children.add(orderCard.card)
                 }
             }

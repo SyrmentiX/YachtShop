@@ -34,4 +34,65 @@ class DatabaseGetter {
         }
         return chosenAccessory
     }
+
+    fun getOrderByUserId(userID : Int) : ArrayList<Orders> {
+        val orderJson = Sender.send(Tables.order)
+        //todo ask about safety
+        val orderList : ArrayList<Orders> = Gson().fromJson<ArrayList<Orders>>(orderJson, object : TypeToken<List<Orders>>() {}.type)
+
+        val ourOrders : ArrayList<Orders> = arrayListOf()
+        for (order in orderList) {
+            if (order.customerId == userID) {
+                ourOrders.add(order)
+            }
+        }
+        return ourOrders
+    }
+
+    fun getContractByOrderId(orderID : Int) : ArrayList<Contract> {
+        val contractJson = Sender.send(Tables.contract)
+        val contractList : ArrayList<Contract> = Gson().fromJson<ArrayList<Contract>>(contractJson, object : TypeToken<List<Contract>>() {}.type)
+
+        val ourContracts : ArrayList<Contract> = arrayListOf()
+        for (contract in contractList) {
+            if (contract.orderId == orderID) {
+                ourContracts.add(contract)
+            }
+        }
+        return ourContracts
+    }
+
+    fun getOrderProductionProgress(orderID: Int) : ProductionProcess {
+        val progressJson = Sender.send(Tables.productionProcess, orderID)
+        return Gson().fromJson<ProductionProcess>(progressJson, ProductionProcess::class.java)
+    }
+
+    fun getOrderDetail(orderID: Int) : ArrayList<Details> {
+        val detailsJson = Sender.send(Tables.details)
+        val detailsList : ArrayList<Details> = Gson().fromJson<ArrayList<Details>>(detailsJson, object : TypeToken<List<Details>>() {}.type)
+
+        val ourDetail : ArrayList<Details> = arrayListOf()
+        for (detail in detailsList) {
+            if (detail.orderId == orderID) {
+                ourDetail.add(detail)
+            }
+        }
+        return ourDetail
+    }
+
+    fun getAccessoryByDetails(details : ArrayList<Details>) : ArrayList<AccessoryId> {
+        val accessoryJson = Sender.send(Tables.accessoryId)
+        val accessoryList : ArrayList<AccessoryId> = Gson().fromJson<ArrayList<AccessoryId>>(accessoryJson, object : TypeToken<List<AccessoryId>>() {}.type)
+
+        val ourAccessory : ArrayList<AccessoryId> = arrayListOf()
+        for (detail in details) {
+            for (accessory in accessoryList) {
+                if (detail.accessoryId == accessory.accessoryId1) {
+                    ourAccessory.add(accessory)
+                    break
+                }
+            }
+        }
+        return ourAccessory
+    }
 }

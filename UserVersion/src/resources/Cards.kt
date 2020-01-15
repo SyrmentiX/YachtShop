@@ -26,6 +26,10 @@ class OrderCard(var yacht: Yacht) {
     fun setOrderState(state : String) {
         (((card.children[0] as HBox).children[2] as VBox).children[0] as Label).text = state
     }
+
+    fun getInfoButton() : Button {
+        return (((card.children[0] as HBox).children[2] as VBox).children[1] as Button)
+    }
 }
 
 class AccessoryCard(var accessory : AccessoryId) {
@@ -33,5 +37,9 @@ class AccessoryCard(var accessory : AccessoryId) {
 
     fun getCheckBox() : CheckBox {
         return (card.children[0] as CheckBox)
+    }
+
+    fun getAccessoryPrice() : Int {
+        return accessory.price
     }
 }

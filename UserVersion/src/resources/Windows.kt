@@ -1,9 +1,13 @@
 package resources
 
 import javafx.scene.control.Button
+import javafx.scene.control.Label
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+
+val beginSentence = "Цена: "
+val endSentence = " руб."
 
 class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
     private val window = fabric.getAccessoryWindow()
@@ -13,8 +17,17 @@ class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
     init {
         for (addition in accessory) {
             val additionCard = AccessoryCard(addition)
+            additionCard.getCheckBox().setOnAction {
+                if (!additionCard.getCheckBox().isSelected) {
+                    this.yacht.price -= additionCard.getAccessoryPrice()
+                } else {
+                    this.yacht.price += additionCard.getAccessoryPrice()
+                }
+                getTotalPriceLabel().text = beginSentence + this.yacht.price.toString() + endSentence
+            }
             getCenterPane().children.add(additionCard.card)
             cardList.add(additionCard)
+            getTotalPriceLabel().text = beginSentence + this.yacht.price.toString() + endSentence
         }
     }
 
@@ -38,9 +51,6 @@ class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
 
     fun addSelectedAccessory() {
         yacht.selectedAccessory = getSelectedAccessory()
-        for (accessory in yacht.selectedAccessory) {
-            yacht.price += accessory.price
-        }
     }
 
     private fun getCenterPane() : VBox {
@@ -48,6 +58,10 @@ class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
     }
 
     fun getBuyButton() : Button {
-        return ((window.bottom as HBox).children[0] as Button)
+        return ((window.bottom as HBox).children[1] as Button)
+    }
+
+    private fun getTotalPriceLabel() : Label {
+        return ((window.bottom as HBox).children[0] as Label)
     }
 }

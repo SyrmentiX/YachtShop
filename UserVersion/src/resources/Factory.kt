@@ -11,8 +11,6 @@ import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.text.Font
-import javafx.scene.text.FontWeight
-import resources.Yacht
 
 class Factory {
     fun getYachtCard(yacht : Yacht) : AnchorPane {
@@ -77,10 +75,10 @@ class Factory {
                                 prefHeight = 170.0
                                 val bucketButton = object : Button() {
                                     init {
-                                        id = "bucketButton"
+                                        id = "buyButton"
                                         prefWidth = 95.0
                                         prefHeight = 40.0
-                                        text = "В корзину"
+                                        text = "Купить"
                                         setMargin(this, Insets(30.0, 0.0, 0.0, 5.0))
                                     }
                                 }
@@ -220,11 +218,11 @@ class Factory {
         return object : BorderPane() {
             init {
                 prefWidth = 300.0
-                prefHeight = 460.0
+                prefHeight = 500.0
                 val center = object : VBox() {
                     init {
                         prefHeight = 400.0
-                        prefWidth = 315.0
+                        prefWidth = 300.0
                         setMargin(this, Insets(20.0, 0.0, 0.0, 5.0))
                     }
                 }
@@ -234,15 +232,22 @@ class Factory {
                     init {
                         prefWidth = 300.0
                         prefHeight = 40.0
+                        val totalPrice = object : Label() {
+                            init {
+                                alignment = Pos.CENTER
+                                prefWidth = 230.0
+                                prefHeight = 40.0
+                            }
+                        }
                         val buyButton = object : Button() {
                             init {
-                                prefWidth = 80.0
+                                prefWidth = 60.0
                                 prefHeight = 20.0
-                                setMargin(this, Insets(10.0, 0.0, 0.0, 110.0))
+                                setMargin(this, Insets(10.0, 0.0, 0.0, 5.0))
                                 text = "Buy"
                             }
                         }
-                        children.add(buyButton)
+                        children.addAll(totalPrice, buyButton)
                     }
                 }
                 this.bottom = bottom
