@@ -12,86 +12,58 @@ class Factory {
         return object : VBox() {
             init {
                 width = 390.0
-                height = 200.0
-                setMargin(this, Insets(5.0, 0.0, 0.0, 0.0))
-                val yachtName = object : Label() {
+                height = 250.0
+                val yachtImage = object : ImageView() {
                     init {
-                        prefWidth = 390.0
-                        prefHeight = 30.0
-                        alignment = Pos.CENTER
-                        text = yacht.name
+                        image = yacht.image
+                        fitWidth = 380.0
+                        fitHeight = 210.0
+                        setMargin(this, Insets(10.0, 5.0, 0.0, 5.0))
                     }
                 }
 
                 val yachtInfo = object : HBox() {
                     init {
                         prefWidth = 390.0
-                        prefHeight = 170.0
-                        val leftArea = object : VBox() {
+                        prefHeight = 30.0
+                        val yachtName = object : Label() {
                             init {
-                                prefWidth = 130.0
-                                prefHeight = 170.0
-                                val yachtImage = object : ImageView() {
-                                    init {
-                                        image = yacht.image
-                                        fitWidth = 130.0
-                                        fitHeight = 130.0
-                                        setMargin(this, Insets(20.0, 5.0, 0.0, 5.0))
-                                    }
-                                }
-                                children.add(yachtImage)
+                                prefWidth = 145.0
+                                text = yacht.name
+                                font = Font.font("Franklin Gothic Medium", 20.0)
+                                setMargin(this, Insets(5.0, 0.0, 0.0, 10.0))
                             }
                         }
-
-                        val centerArea = object : VBox() {
+                        val yachtPrice = object : Label() {
                             init {
-                                prefWidth = 140.0
-                                prefHeight = 170.0
-                                val yachtPrice = object : Label() {
-                                    init {
-                                        text = "Цена: " + yacht.price.toString()
-                                        setMargin(this, Insets(20.0, 5.0, 0.0, 0.0))
-                                    }
-                                }
-                                val yachtOther = object : Label() {
-                                    init {
-                                        text = "Другое: " + yacht.other
-                                        setMargin(this, Insets(20.0, 5.0, 0.0, 0.0))
-                                    }
-                                }
-                                children.addAll(yachtPrice, yachtOther)
+                                prefWidth = 160.0
+                                text = "Цена: " + yacht.price.toString()
+                                font = Font.font("Franklin Gothic Medium", 20.0)
+                                setMargin(this, Insets(5.0, 5.0, 0.0, 5.0))
                             }
                         }
-
-                        val rightArea = object : VBox() {
+                        val bucketButton = object : Button() {
                             init {
-                                prefWidth = 105.0
-                                prefHeight = 170.0
-                                val bucketButton = object : Button() {
-                                    init {
-                                        id = "buyButton"
-                                        prefWidth = 95.0
-                                        prefHeight = 40.0
-                                        text = "Купить"
-                                        setMargin(this, Insets(30.0, 0.0, 0.0, 5.0))
-                                    }
-                                }
-                                val infoButton = object : Button() {
-                                    init {
-                                        id = "descriptionButton"
-                                        prefWidth = 95.0
-                                        prefHeight = 40.0
-                                        text = "Подробнее"
-                                        setMargin(this, Insets(30.0, 0.0, 0.0, 5.0))
-                                    }
-                                }
-                                children.addAll(bucketButton, infoButton)
+                                id = "buyButton"
+                                prefWidth = 25.0
+                                prefHeight = 25.0
+                                text = "$"
+                                setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
                             }
                         }
-                        children.addAll(leftArea, centerArea, rightArea)
+                        val infoButton = object : Button() {
+                            init {
+                                id = "descriptionButton"
+                                prefWidth = 25.0
+                                prefHeight = 25.0
+                                text = "D"
+                                setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
+                            }
+                        }
+                        children.addAll(yachtName,yachtPrice,bucketButton, infoButton)
                     }
                 }
-                children.addAll(yachtName, yachtInfo)
+                children.addAll(yachtImage, yachtInfo)
             }
         }
     }

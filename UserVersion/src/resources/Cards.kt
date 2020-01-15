@@ -1,5 +1,7 @@
 package resources
-import javafx.scene.control.*
+import javafx.scene.control.Button
+import javafx.scene.control.CheckBox
+import javafx.scene.control.Label
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
@@ -10,11 +12,11 @@ class YachtCard(var yacht: Yacht) {
     var card = fabric.getYachtCard(yacht)
 
     fun getBucketButton() : Button {
-        return (((card.children[1] as HBox).children[2] as VBox).children[0] as Button)
+        return ((card.children[1] as HBox).children[2] as Button)
     }
 
     fun getDescriptionButton() : Button {
-        return (((card.children[1] as HBox).children[2] as VBox).children[1] as Button)
+        return ((card.children[1] as HBox).children[3] as Button)
     }
 }
 
