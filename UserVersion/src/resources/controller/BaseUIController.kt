@@ -59,6 +59,18 @@ class BaseUIController : Base() {
                 for (yacht in addedYacht) {
                     val orderCard = OrderCard(yacht)
                     orderCard.setOrderState("Ожидает оплаты")
+
+                    orderCard.getInfoButton().setOnAction {
+                        val orderDescriptionWindow = OrderDescriptionWindow(orderCard.yacht)
+                        val stage = Stage()
+                        orderDescriptionWindow.getCloseButton().setOnAction {
+                            //todo check CheckBox and send Request
+                            stage.close()
+                        }
+                        stage.scene = Scene(orderDescriptionWindow.getWindow())
+                        stage.showAndWait()
+                    }
+
                     displayPane.children.add(orderCard.card)
                 }
             }
