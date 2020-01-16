@@ -39,18 +39,18 @@ class ImageSlider(var images : ArrayList<Image>) {
 
     private var numberOfImage = 0
 
-    private var fillCircle = Image("resources\\assert\\icons\\fill.png")
-    private var hollowCircle = Image("resources\\assert\\icons\\hollow.png")
+    private var fillCircle = GlobalVar.getIconFillCircle()
+    private var hollowCircle = GlobalVar.getIconHollowCircle()
 
     init {
         if (images.isNotEmpty()) {
             circleBox.alignment = Pos.CENTER
 
-            val prevImage = ImageView(Image("resources\\assert\\icons\\left.png"))
+            val prevImage = ImageView(GlobalVar.getIconLeftArrow())
             prevImage.fitWidth = buttonSize
             prevImage.fitHeight = buttonSize
 
-            val nextImage = ImageView(Image("resources\\assert\\icons\\right.png"))
+            val nextImage = ImageView(GlobalVar.getIconRightArrow())
             nextImage.fitWidth = buttonSize
             nextImage.fitHeight = buttonSize
 
