@@ -7,7 +7,6 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.scene.text.Font
-import resources.ImageSlider
 
 class Factory {
     fun getYachtCard(yacht : Yacht) : VBox {

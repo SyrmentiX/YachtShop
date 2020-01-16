@@ -49,22 +49,22 @@ class AccessoryCard(var accessory : AccessoryId) {
     }
 }
 
-class LoginCard {
-    var card = fabric.getLoginCard()
-
-    fun getLoginButton() : Button {
-        return ((card.children[3] as HBox).children[0] as Button)
-    }
-
-    fun getRegisterButton() : Button {
-        return ((card.children[3] as HBox).children[1] as Button)
-    }
-
-    fun getUsername() : String {
-        return (card.children[1] as TextField).text
-    }
-
-    fun getPassword() : String {
-        return (card.children[2] as PasswordField).text
-    }
-}
+//class LoginCard {
+//    var card = fabric.getLoginCard()
+//
+//    fun getLoginButton() : Button {
+//        return ((card.children[3] as HBox).children[0] as Button)
+//    }
+//
+//    fun getRegisterButton() : Button {
+//        return ((card.children[3] as HBox).children[1] as Button)
+//    }
+//
+//    fun getUsername() : String {
+//        return (card.children[1] as TextField).text
+//    }
+//
+//    fun getPassword() : String {
+//        return (card.children[2] as PasswordField).text
+//    }
+//}
