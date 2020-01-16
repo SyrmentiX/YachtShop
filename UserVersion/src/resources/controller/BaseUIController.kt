@@ -30,6 +30,17 @@ class BaseUIController : Base() {
         menuPane.background = Background(BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY))
         profileButton.text = userName
 
+        val loginCard = LoginCard()
+        loginCard.getLoginButton().setOnAction {
+            // todo server part
+        }
+
+        loginCard.getRegisterButton().setOnAction {
+            // todo change form
+        }
+
+        displayPane.children.add(loginCard.card)
+
         directoryButton.setOnAction {
             displayPane.children.clear()
             for (boat in databaseGetter.getBoats()) {

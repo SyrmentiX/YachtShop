@@ -1,15 +1,12 @@
 package resources
-import javafx.scene.control.Button
-import javafx.scene.control.CheckBox
-import javafx.scene.control.Label
-import javafx.scene.layout.AnchorPane
+import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 
 val fabric : Factory = Factory()
 
 class YachtCard(var yacht: Yacht) {
-    var card  = fabric.getYachtCard(yacht)
+    var card = fabric.getYachtCard(yacht)
 
     fun getBucketButton() : Button {
         return ((card.children[1] as HBox).children[2] as Button)
@@ -29,7 +26,7 @@ class YachtDescriptionCard(var yacht: Yacht) {
 }
 
 class OrderCard(var yacht: Yacht) {
-    var card : AnchorPane = fabric.getOrderCard(yacht)
+    var card = fabric.getOrderCard(yacht)
 
     fun setOrderState(state : String) {
         (((card.children[0] as HBox).children[2] as VBox).children[0] as Label).text = state
@@ -41,7 +38,7 @@ class OrderCard(var yacht: Yacht) {
 }
 
 class AccessoryCard(var accessory : AccessoryId) {
-    var card : HBox = fabric.getAccessoryCard(accessory)
+    var card = fabric.getAccessoryCard(accessory)
 
     fun getCheckBox() : CheckBox {
         return (card.children[0] as CheckBox)
@@ -49,5 +46,25 @@ class AccessoryCard(var accessory : AccessoryId) {
 
     fun getAccessoryPrice() : Int {
         return accessory.price
+    }
+}
+
+class LoginCard {
+    var card = fabric.getLoginCard()
+
+    fun getLoginButton() : Button {
+        return ((card.children[3] as HBox).children[0] as Button)
+    }
+
+    fun getRegisterButton() : Button {
+        return ((card.children[3] as HBox).children[1] as Button)
+    }
+
+    fun getUsername() : String {
+        return (card.children[1] as TextField).text
+    }
+
+    fun getPassword() : String {
+        return (card.children[2] as PasswordField).text
     }
 }
