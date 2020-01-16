@@ -1,6 +1,7 @@
 package resources
 
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.net.URL
 
 class Sender {
@@ -21,12 +22,23 @@ class Sender {
 
     fun checkAuth(login : String, password : String) : Int { // !!! Если возвращён -1 - авторизация не прошла или произошла ошибка.
         val auth = Auth()
-        auth.username = login
-        auth.password = password
+        auth.username = login.replace(" ", "")
+        auth.password = password.replace(" ", "")
 
         val url = "https://yaht.azurewebsites.net/Account/AppLogin?json=${Gson().toJson(auth)}"
         val json = URL(url).openStream().bufferedReader().use{ it.readText() }
 
         return Gson().fromJson<Int>(json, Int::class.java)
+    }
+
+    fun registration(auth: Auth, customer: Customers) : ArrayList<String> {
+        val map : MutableMap<String, Any> = mutableMapOf()
+        map["auth"] = auth
+        map["customer"] = customer
+
+        val url = "https://yaht.azurewebsites.net/Account/AppRegistration?json=${Gson().toJson(map)}"
+        val json = URL(url).openStream().bufferedReader().use{ it.readText() }
+
+        return Gson().fromJson(json, object : TypeToken<List<String>>() {}.type)
     }
 }

@@ -5,9 +5,19 @@ import com.google.gson.reflect.TypeToken
 import java.net.URL
 
 class DatabaseGetter {
+    fun getUserById(userID : Int) : Customers {
+        val json = Sender.send(Tables.customers, userID)
+        return Gson().fromJson<Customers>(json, Customers::class.java)
+    }
+
     fun getBoats() : ArrayList<Boat> {
         val json = Sender.send(Tables.boat)
         return Gson().fromJson(json, object : TypeToken<List<Boat>>() {}.type)
+    }
+
+    fun getVat(vatID : Int) : Vat {
+        val json = Sender.send(Tables.vat, vatID)
+        return Gson().fromJson<Vat>(json, Vat::class.java)
     }
 
     fun getBoatById(id : Int) : Boat {
@@ -36,27 +46,26 @@ class DatabaseGetter {
         return chosenAccessory
     }
 
-    fun getOrderByUserId(userID : Int) : ArrayList<Orders> {
+    fun getOrdersByUserId(userID : Int) : ArrayList<Orders> {
         val url = "https://yaht.azurewebsites.net/Orders/Get?customerId=${userID}"
         val json = URL(url).openStream().bufferedReader().use{ it.readText() }
         return Gson().fromJson(json, object : TypeToken<List<Orders>>() {}.type)
     }
 
-    fun getContractByOrderId(orderID : Int) : ArrayList<Contract> {
+    fun getContractByOrderId(orderID : Int) : Contract {
         val contractJson = Sender.send(Tables.contract)
         val contractList : ArrayList<Contract> = Gson().fromJson<ArrayList<Contract>>(contractJson, object : TypeToken<List<Contract>>() {}.type)
 
-        val ourContracts : ArrayList<Contract> = arrayListOf()
         for (contract in contractList) {
             if (contract.orderId == orderID) {
-                ourContracts.add(contract)
+                return contract
             }
         }
-        return ourContracts
+        return Contract()
     }
 
-    fun getOrderProductionProgress(orderID: Int) : ProductionProcess {
-        val progressJson = Sender.send(Tables.productionProcess, orderID)
+    fun getOrderProductionProgress(productionProcessID : Int) : ProductionProcess {
+        val progressJson = Sender.send(Tables.productionProcess, productionProcessID)
         return Gson().fromJson<ProductionProcess>(progressJson, ProductionProcess::class.java)
     }
 

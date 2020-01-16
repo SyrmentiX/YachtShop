@@ -35,6 +35,8 @@ class BaseUIController : Base() {
                 val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
                 val stage = Stage()
                 buyWindow.getBuyButton().setOnAction {
+                    val vat = databaseGetter.getVat(yacht.vat)
+                    buyWindow.getYacht().price += (yacht.price * vat.vat1).toInt()
                     buyWindow.addSelectedAccessory()
                     addedYacht.add(buyWindow.getYacht())
                     stage.close()
@@ -60,37 +62,78 @@ class BaseUIController : Base() {
         }
     }
 
+    private fun getOrderCard(yacht: Yacht, state: String) : OrderCard {
+        val orderCard = OrderCard(yacht)
+        orderCard.setOrderState(state)
+        orderCard.getInfoButton().setOnAction {
+            val orderDescriptionWindow = OrderDescriptionWindow(orderCard.yacht)
+            val stage = Stage()
+            orderDescriptionWindow.getCloseButton().setOnAction {
+                //todo check CheckBox and send Request
+                stage.close()
+            }
+            stage.scene = Scene(orderDescriptionWindow.getWindow())
+            stage.showAndWait()
+        }
+        return orderCard
+    }
+
+    private fun fillOrder() {
+        val userOrders = databaseGetter.getOrdersByUserId(user.customerId)
+        for (order in userOrders) {
+            val boat = databaseGetter.getBoatById(order.boatId)
+            val contract = databaseGetter.getContractByOrderId(order.orderId)
+            val productionProcess = databaseGetter.getOrderProductionProgress(contract.productionProcess)
+            val yacht = Yacht(boat)
+            val details = databaseGetter.getOrderDetail(order.orderId)
+            val accessory = databaseGetter.getAccessoryByDetails(details)
+            yacht.selectedAccessory = accessory
+            yacht.price = contract.contractTotalPriceIncVat
+            val orderCard = getOrderCard(yacht, productionProcess.productionProcess1)
+            orderedYacht.add(orderCard)
+        }
+    }
+
     private fun orderAction() {
         displayPane.children.clear()
         if (addedYacht.isNotEmpty()) {
             for (yacht in addedYacht) {
-                val orderCard = OrderCard(yacht)
-                orderCard.setOrderState("Ожидает оплаты")
-
-                orderCard.getInfoButton().setOnAction {
-                    val orderDescriptionWindow = OrderDescriptionWindow(orderCard.yacht)
-                    val stage = Stage()
-                    orderDescriptionWindow.getCloseButton().setOnAction {
-                        //todo check CheckBox and send Request
-                        stage.close()
-                    }
-                    stage.scene = Scene(orderDescriptionWindow.getWindow())
-                    stage.showAndWait()
-                }
-
+                val orderCard = getOrderCard(yacht,"Ожидает оплаты")
                 displayPane.children.add(orderCard.card)
             }
         }
+        if (!isOrderLoaded) {
+            fillOrder()
+            isOrderLoaded = true
+        }
+        for (card in orderedYacht) {
+            displayPane.children.add(card.card)
+        }
+    }
+
+    private fun setUserName() {
+        profileButton.text = user.firstName + " " + user.secondName
     }
 
     fun initialize() {
         profileButton.background = Background(BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY))
         menuPane.background = Background(BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY))
-        profileButton.text = userName
+        setUserName()
 
         val loginCard = LoginCard()
         loginCard.getLoginButton().setOnAction {
-            // todo server send request
+            var errorMessage = loginCard.checkInputCorrect()
+            if (errorMessage.isEmpty()) {
+                val userID = sender.checkAuth(loginCard.getUsername(), loginCard.getPassword())
+                if (userID == -1) {
+                    errorMessage = nonExitedUserError
+                } else {
+                    user = databaseGetter.getUserById(userID)
+                    setUserName()
+                    directoryAction()
+                }
+            }
+            loginCard.setErrorText( errorMessage)
         }
 
         loginCard.getRegisterButton().setOnAction {
@@ -102,7 +145,25 @@ class BaseUIController : Base() {
                 displayPane.children.add(loginCard.card)
             }
             registerCard.getRegisterButton().setOnAction {
-                //todo send request
+                var errorMessages = registerCard.checkDataCorrect()
+                if (errorMessages.isEmpty()) {
+                    val auth = Auth()
+                    auth.username = registerCard.getLogin()
+                    auth.password = registerCard.getPassword()
+                    val customer = Customers()
+                    customer.address = registerCard.getAddress()
+                    customer.city = registerCard.getCity()
+                    customer.dateOfBirth = registerCard.getBirthDate()
+                    customer.email = registerCard.getEMail()
+                    customer.firstName = registerCard.getFirstName()
+                    customer.secondName = registerCard.getSecondName()
+                    customer.phoneNumber = registerCard.getPhone()
+                    customer.idDocumentName = registerCard.getDocumentType().documentNameId
+                    customer.idNumber = registerCard.getDocumentSeries()
+                    sender.registration(auth, customer)
+                    //todo check server responde
+                }
+                registerCard.setErrorText(errorMessages)
             }
 
             displayPane.children.add(registerCard.card)
