@@ -2,6 +2,7 @@ package resources
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.net.URL
 
 class DatabaseGetter {
     fun getBoats() : ArrayList<Boat> {
@@ -36,17 +37,9 @@ class DatabaseGetter {
     }
 
     fun getOrderByUserId(userID : Int) : ArrayList<Orders> {
-        val orderJson = Sender.send(Tables.order)
-        //todo ask about safety
-        val orderList : ArrayList<Orders> = Gson().fromJson<ArrayList<Orders>>(orderJson, object : TypeToken<List<Orders>>() {}.type)
-
-        val ourOrders : ArrayList<Orders> = arrayListOf()
-        for (order in orderList) {
-            if (order.customerId == userID) {
-                ourOrders.add(order)
-            }
-        }
-        return ourOrders
+        val url = "https://yaht.azurewebsites.net/Orders/Get?customerId=${userID}"
+        val json = URL(url).openStream().bufferedReader().use{ it.readText() }
+        return Gson().fromJson(json, object : TypeToken<List<Orders>>() {}.type)
     }
 
     fun getContractByOrderId(orderID : Int) : ArrayList<Contract> {
@@ -94,5 +87,10 @@ class DatabaseGetter {
             }
         }
         return ourAccessory
+    }
+
+    fun getAvailableDocumentTypes() : ArrayList<DocumentName> {
+        val documentJson = Sender.send(Tables.documentName)
+        return Gson().fromJson<ArrayList<DocumentName>>(documentJson, object : TypeToken<List<DocumentName>>() {}.type)
     }
 }

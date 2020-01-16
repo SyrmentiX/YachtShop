@@ -1,5 +1,6 @@
 package resources
 
+import com.google.gson.Gson
 import java.net.URL
 
 class Sender {
@@ -16,5 +17,16 @@ class Sender {
                 "[]"
             }
         }
+    }
+
+    fun checkAuth(login : String, password : String) : Int { // !!! Если возвращён -1 - авторизация не прошла или произошла ошибка.
+        val auth = Auth()
+        auth.username = login
+        auth.password = password
+
+        val url = "https://yaht.azurewebsites.net/Account/AppLogin?json=${Gson().toJson(auth)}"
+        val json = URL(url).openStream().bufferedReader().use{ it.readText() }
+
+        return Gson().fromJson<Int>(json, Int::class.java)
     }
 }

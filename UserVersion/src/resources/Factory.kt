@@ -1,11 +1,14 @@
 package resources
 
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.scene.text.Font
+import java.util.function.DoubleConsumer
 
 class Factory {
     fun getYachtCard(yacht : Yacht) : VBox {
@@ -346,7 +349,221 @@ class Factory {
                         this.children.addAll(loginButton, registerButton)
                     }
                 }
-                this.children.addAll(shopName, loginField, passwordField, buttonBox)
+
+                val errorMessageLabel = object : Label() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        alignment = Pos.CENTER
+                        font = Font.font("Comic Sans MS", 20.0)
+                        text = ""
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+                this.children.addAll(shopName, loginField, passwordField, buttonBox, errorMessageLabel)
+            }
+        }
+    }
+
+    fun getRegistrationCard() : VBox {
+        return object : VBox() {
+            init {
+                prefHeight = 600.0
+                prefWidth = 800.0
+                val cardNameLabel = object : Label() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        alignment = Pos.CENTER
+                        font = Font.font("Comic Sans MS", 20.0)
+                        text = "Регистрация"
+                        setMargin(this, Insets(10.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                val loginField = object : TextField() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        promptText = "Логин"
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                val emailField = object : TextField() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        promptText = "Почта"
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                val passwordField = object : PasswordField() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        promptText = "Пароль"
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                this.children.addAll(cardNameLabel, loginField, emailField, passwordField)
+
+                val usernameBox = object : HBox() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        VBox.setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                        val firstNameField = object : TextField() {
+                            init {
+                                prefWidth = 190.0
+                                prefHeight = 30.0
+                                promptText = "Имя"
+                            }
+                        }
+
+                        val secondNameField = object : TextField() {
+                            init {
+                                prefWidth = 190.0
+                                prefHeight = 30.0
+                                promptText = "Фамилия"
+                                setMargin(this, Insets(0.0, 0.0, 0.0, 20.0))
+                            }
+                        }
+                        this.children.addAll(firstNameField, secondNameField)
+                    }
+                }
+
+                val metadataBox = object : HBox() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        VBox.setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                        val dateOfBirth = object : DatePicker() {
+                            init {
+                                prefWidth = 190.0
+                                prefHeight = 30.0
+                                promptText = "Дата рождения"
+                            }
+                        }
+
+                        val phoneField = object : TextField() {
+                            init {
+                                prefWidth = 190.0
+                                prefHeight = 30.0
+                                promptText = "Номер телефона"
+                                setMargin(this, Insets(0.0, 0.0, 0.0, 20.0))
+                            }
+                        }
+                        this.children.addAll(dateOfBirth, phoneField)
+                    }
+                }
+
+                this.children.addAll(usernameBox, metadataBox)
+
+                val addressField = object : TextField() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        promptText = "Адрес"
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                val cityField = object : TextField() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        promptText = "Город"
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                val observableList = FXCollections.observableArrayList(DatabaseGetter().getAvailableDocumentTypes())
+                val choiceBox = object : ChoiceBox<DocumentName>(observableList) {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                        value = observableList.first()
+                    }
+                }
+
+                val documentField = object : TextField() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        promptText = "Номер и серия документа"
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                this.children.addAll(addressField, cityField, choiceBox, documentField)
+
+                val buttonBox = object : HBox() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        VBox.setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                        val cancelButton = object : Button() {
+                            init {
+                                prefWidth = 130.0
+                                prefHeight = 30.0
+                                text = "Отмена"
+                            }
+                        }
+
+                        val registerButton = object : Button() {
+                            init {
+                                prefWidth = 130.0
+                                prefHeight = 30.0
+                                text = "Зарегистрироваться"
+                                setMargin(this, Insets(0.0, 0.0, 0.0, 140.0))
+                            }
+                        }
+                        this.children.addAll(cancelButton, registerButton)
+                    }
+                }
+
+                val errorMessageLabel = object : Label() {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        alignment = Pos.CENTER
+                        font = Font.font("Comic Sans MS", 20.0)
+                        text = ""
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                    }
+                }
+
+                this.children.addAll(buttonBox, errorMessageLabel)
             }
         }
     }

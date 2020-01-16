@@ -2,6 +2,8 @@ package resources
 import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import java.time.format.DateTimeFormatter
+import javax.print.Doc
 
 val fabric : Factory = Factory()
 
@@ -42,7 +44,7 @@ class AccessoryCard(var accessory : AccessoryId) {
 }
 
 class LoginCard {
-    var card = fabric.getLoginCard()
+    val card = fabric.getLoginCard()
 
     fun getLoginButton() : Button {
         return ((card.children[3] as HBox).children[0] as Button)
@@ -58,5 +60,71 @@ class LoginCard {
 
     fun getPassword() : String {
         return (card.children[2] as PasswordField).text
+    }
+
+    fun isUsernameNotEmpty() : Boolean {
+        return (getUsername().isNotEmpty())
+    }
+
+    fun isPasswordNotEmpty() : Boolean {
+        return (getPassword().isNotEmpty())
+    }
+
+
+}
+
+class RegisterCard {
+    val card = fabric.getRegistrationCard()
+
+    fun getLogin() : String {
+        return (card.children[1] as TextField).text
+    }
+
+    fun getEMail() : String {
+        return (card.children[2] as TextField).text
+    }
+
+    fun getPassword() : String {
+        return (card.children[3] as PasswordField).text
+    }
+
+    fun getFirstName() : String {
+        return ((card.children[4] as HBox).children[0] as TextField).text
+    }
+
+    fun getSecondName() : String {
+        return ((card.children[4] as HBox).children[1] as TextField).text
+    }
+
+    fun getBirthDate() : String {
+        return ((card.children[5] as HBox).children[0] as DatePicker).value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+    }
+
+    fun getPhone() : String {
+        return ((card.children[5] as HBox).children[0] as TextField).text
+    }
+
+    fun getAddress() : String {
+        return (card.children[6] as TextField).text
+    }
+
+    fun getCity() : String {
+        return (card.children[7] as TextField).text
+    }
+
+    fun getDocumentType() : DocumentName {
+        return (card.children[8] as ChoiceBox<*>).value as DocumentName
+    }
+
+    fun getDocumentSeries() : String {
+        return (card.children[9] as TextField).text
+    }
+
+    fun getCancelButton() : Button {
+        return ((card.children[10] as HBox).children[0] as Button)
+    }
+
+    fun getRegisterButton() : Button {
+        return ((card.children[10] as HBox).children[1] as Button)
     }
 }
