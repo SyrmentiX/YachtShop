@@ -147,21 +147,10 @@ class BaseUIController : Base() {
             registerCard.getRegisterButton().setOnAction {
                 var errorMessages = registerCard.checkDataCorrect()
                 if (errorMessages.isEmpty()) {
-                    val auth = Auth()
-                    auth.username = registerCard.getLogin()
-                    auth.password = registerCard.getPassword()
-                    val customer = Customers()
-                    customer.address = registerCard.getAddress()
-                    customer.city = registerCard.getCity()
-                    customer.dateOfBirth = registerCard.getBirthDate()
-                    customer.email = registerCard.getEMail()
-                    customer.firstName = registerCard.getFirstName()
-                    customer.secondName = registerCard.getSecondName()
-                    customer.phoneNumber = registerCard.getPhone()
-                    customer.idDocumentName = registerCard.getDocumentType().documentNameId
-                    customer.idNumber = registerCard.getDocumentSeries()
+                    val auth = registerCard.getAuthFromInputData()
+                    val customer = registerCard.getCustomerFromInputData()
                     sender.registration(auth, customer)
-                    //todo check server responde
+                    //todo check server response
                 }
                 registerCard.setErrorText(errorMessages)
             }

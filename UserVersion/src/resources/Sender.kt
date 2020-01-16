@@ -41,4 +41,16 @@ class Sender {
 
         return Gson().fromJson(json, object : TypeToken<List<String>>() {}.type)
     }
+
+    fun addOrder(order : Orders, contract: Contract, details: Details) : ArrayList<String> {
+        val map : MutableMap<String, Any> = mutableMapOf()
+        map["orders"] = order
+        map["contract"] = contract
+        map["details"] = details
+
+        val url = "https://yaht.azurewebsites.net/Account/AppRegistration?json=${Gson().toJson(map)}"
+        val json = URL(url).openStream().bufferedReader().use{ it.readText() }
+
+        return Gson().fromJson(json, object : TypeToken<List<String>>() {}.type)
+    }
 }

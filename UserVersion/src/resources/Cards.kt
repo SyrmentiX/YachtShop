@@ -157,6 +157,27 @@ class RegisterCard {
         (card.children[11] as Label).text = text
     }
 
+    fun getCustomerFromInputData() : Customers {
+        val customer = Customers()
+        customer.address = getAddress()
+        customer.city = getCity()
+        customer.dateOfBirth = getBirthDate()
+        customer.email = getEMail()
+        customer.firstName = getFirstName()
+        customer.secondName = getSecondName()
+        customer.phoneNumber = getPhone()
+        customer.idDocumentName = getDocumentType().documentNameId
+        customer.idNumber = getDocumentSeries()
+        return customer
+    }
+
+    fun getAuthFromInputData() : Auth {
+        val auth = Auth()
+        auth.username = getLogin()
+        auth.password = getPassword()
+        return auth
+    }
+
     fun checkDataCorrect() : String {
         if (getLogin().isEmpty()) {
             return usernameError
