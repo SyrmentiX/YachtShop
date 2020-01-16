@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/Cards.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Cards.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/DatabaseClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/DatabaseClasses.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/DatabaseGetter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/DatabaseGetter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Factory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/Sender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Sender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/Yacht.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Yacht.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579090148590</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add Register and Login">
+      <created>1579148713218</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1579148713219</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -200,7 +201,8 @@
     <MESSAGE value="add order description button" />
     <MESSAGE value="add login card" />
     <MESSAGE value="MergeResolve" />
-    <option name="LAST_COMMIT_MESSAGE" value="MergeResolve" />
+    <MESSAGE value="add Register and Login" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Register and Login" />
   </component>
   <component name="WindowStateProjectService">
     <state x="254" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579058561897">
@@ -215,10 +217,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="83" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1577785735490" />
-    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579148698527">
+    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579150873643">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579148698527" />
+    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579150873643" />
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1577864475064">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -227,22 +229,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="506" y="172" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1578975119674" />
-    <state width="1557" height="149" key="GridCell.Tab.0.bottom" timestamp="1579148677391">
+    <state width="1557" height="149" key="GridCell.Tab.0.bottom" timestamp="1579150873658">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="149" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579148677391" />
-    <state width="1557" height="149" key="GridCell.Tab.0.center" timestamp="1579148677391">
+    <state width="1557" height="149" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579150873658" />
+    <state width="1557" height="149" key="GridCell.Tab.0.center" timestamp="1579150873658">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="149" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579148677391" />
-    <state width="1557" height="149" key="GridCell.Tab.0.left" timestamp="1579148677391">
+    <state width="1557" height="149" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579150873658" />
+    <state width="1557" height="149" key="GridCell.Tab.0.left" timestamp="1579150873658">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="149" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579148677391" />
-    <state width="1557" height="149" key="GridCell.Tab.0.right" timestamp="1579148677391">
+    <state width="1557" height="149" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579150873658" />
+    <state width="1557" height="149" key="GridCell.Tab.0.right" timestamp="1579150873658">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="149" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579148677391" />
+    <state width="1557" height="149" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579150873658" />
     <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1579016306347">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -259,14 +261,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1579016306347" />
-    <state x="152" y="74" key="MergeDialog" timestamp="1579090060130">
+    <state x="152" y="74" key="MergeDialog" timestamp="1579149006706">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="152" y="74" key="MergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579090060130" />
-    <state x="512" y="147" key="MultipleFileMergeDialog" timestamp="1579090060141">
+    <state x="152" y="74" key="MergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579149006706" />
+    <state x="512" y="147" key="MultipleFileMergeDialog" timestamp="1579149006731">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="512" y="147" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579090060141" />
+    <state x="512" y="147" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579149006731" />
     <state x="280" y="5" key="SettingsEditor" timestamp="1579054782528">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -275,10 +277,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="496" y="255" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1579136639826" />
-    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579096573834">
+    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579148717681">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1579096573834" />
+    <state x="609" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1579148717681" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1579143544516">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
