@@ -19,6 +19,14 @@ class YachtCard(var yacht: Yacht) {
     }
 }
 
+class YachtDescriptionCard(var yacht: Yacht) {
+    var dataBaseGetter = DatabaseGetter()
+    var card = fabric.getDescriptionCard(yacht)
+    fun getBucketButton() : Button {
+        return (card.children[6]  as Button)
+    }
+}
+
 class OrderCard(var yacht: Yacht) {
     var card = fabric.getOrderCard(yacht)
 

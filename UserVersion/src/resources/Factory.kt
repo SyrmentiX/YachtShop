@@ -5,6 +5,7 @@ import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
+import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.scene.text.Font
@@ -67,6 +68,87 @@ class Factory {
                     }
                 }
                 children.addAll(yachtImage, yachtInfo)
+            }
+        }
+    }
+
+    fun getDescriptionCard(yacht: Yacht) : VBox{
+        return object : VBox() {
+            init {
+                width = 780.0
+                height = 1000.0
+                val imageCarousel = object : BorderPane(){
+                    init {
+                        prefWidth = 780.0
+                        prefHeight = 440.0
+                        val list : ArrayList<Image> = arrayListOf()
+                        for (i in 1..3){
+                            list.add(Image("resources\\assert\\yachtPic\\"+ yacht.id.toString() +"\\$i.jpg"))
+                        }
+                        val slider = ImageSlider(list)
+                        children.addAll(slider.getBox())
+                    }
+                }
+                val yachtName = object : Label(){
+                    init {
+                        prefWidth = 780.0
+                        prefHeight = 50.0
+                        text = yacht.name
+                        font = Font.font("Comic Sans MS", 50.0)
+                        alignment = Pos.CENTER
+                    }
+                }
+                val yachtColour = object : Label(){
+                    init {
+                        prefWidth = 765.0
+                        prefHeight = 10.0
+                        text = "Цвет: " + yacht.colour
+                        font = Font.font("Comic Sans MS", 20.0)
+                        alignment = Pos.CENTER_LEFT
+                        setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
+                    }
+                }
+                val yachtWood = object : Label(){
+                    init {
+                        prefWidth = 765.0
+                        prefHeight = 10.0
+                        text = "Материал: " + yacht.wood
+                        font = Font.font("Comic Sans MS", 20.0)
+                        alignment = Pos.CENTER_LEFT
+                        setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
+                    }
+                }
+                val yachtType = object : Label(){
+                    init {
+                        prefWidth = 765.0
+                        prefHeight = 10.0
+                        text = "Тип: " + yacht.type
+                        font = Font.font("Comic Sans MS", 20.0)
+                        alignment = Pos.CENTER_LEFT
+                        setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
+                    }
+                }
+                val yachtNumberOfRowers = object : Label(){
+                    init {
+                        prefWidth = 765.0
+                        prefHeight = 10.0
+                        text = "Количество мест для гребли: " + yacht.numberOfRowers.toString()
+                        font = Font.font("Comic Sans MS", 20.0)
+                        alignment = Pos.CENTER_LEFT
+                        setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
+                    }
+                }
+                val bucketButton = object : Button() {
+                    init {
+                        id = "buyButton"
+                        prefWidth = 350.0
+                        prefHeight = 50.0
+                        text = "Оформить Заказ"
+                        font = Font.font("Comic Sans MS", 30.0)
+                        setMargin(this, Insets(30.0, 215.0, 20.0, 215.0))
+                    }
+                }
+                children.addAll(imageCarousel,yachtName,yachtType,yachtWood,yachtColour,yachtNumberOfRowers,bucketButton)
             }
         }
     }

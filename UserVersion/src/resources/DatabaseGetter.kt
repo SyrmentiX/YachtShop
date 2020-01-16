@@ -93,4 +93,23 @@ class DatabaseGetter {
         val documentJson = Sender.send(Tables.documentName)
         return Gson().fromJson<ArrayList<DocumentName>>(documentJson, object : TypeToken<List<DocumentName>>() {}.type)
     }
+
+    fun getYachtColour(colourId : Int) : String {
+        val colourJson = Sender.send(Tables.colours,colourId)
+        val colour  = Gson().fromJson<Colours>(colourJson, Colours::class.java)
+        return colour.colour
+    }
+
+    fun getYachtType(typeId : Int) : String {
+        val typeJson = Sender.send(Tables.boatType,typeId)
+        val type  = Gson().fromJson<BoatType>(typeJson, BoatType::class.java)
+        return type.boatType1
+    }
+
+    fun getYachtWood(woodId : Int) : String {
+        val woodJson = Sender.send(Tables.wood,woodId)
+        val wood  = Gson().fromJson<Wood>(woodJson, Wood::class.java)
+        return wood.wood1
+    }
+
 }

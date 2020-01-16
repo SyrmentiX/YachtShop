@@ -22,51 +22,6 @@ class BaseUIController : Base() {
     @FXML
     lateinit var displayPane : FlowPane
 
-    private fun directoryAction() {
-        displayPane.children.clear()
-        for (boat in databaseGetter.getBoats()) {
-            val yacht = Yacht(boat)
-            val yachtCard = YachtCard(yacht)
-            yachtCard.getBucketButton().setOnAction {
-                val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
-                val stage = Stage()
-                buyWindow.getBuyButton().setOnAction {
-                    buyWindow.addSelectedAccessory()
-                    addedYacht.add(buyWindow.getYacht())
-                    stage.close()
-                }
-                val scene = Scene(buyWindow.getWindow())
-                stage.scene = scene
-                stage.showAndWait()
-            }
-            yachtCard.getDescriptionButton().setOnAction { println("not working") }
-            displayPane.children.add(yachtCard.card)
-        }
-    }
-
-    private fun orderAction() {
-        displayPane.children.clear()
-        if (addedYacht.isNotEmpty()) {
-            for (yacht in addedYacht) {
-                val orderCard = OrderCard(yacht)
-                orderCard.setOrderState("Ожидает оплаты")
-
-                orderCard.getInfoButton().setOnAction {
-                    val orderDescriptionWindow = OrderDescriptionWindow(orderCard.yacht)
-                    val stage = Stage()
-                    orderDescriptionWindow.getCloseButton().setOnAction {
-                        //todo check CheckBox and send Request
-                        stage.close()
-                    }
-                    stage.scene = Scene(orderDescriptionWindow.getWindow())
-                    stage.showAndWait()
-                }
-
-                displayPane.children.add(orderCard.card)
-            }
-        }
-    }
-
     @FXML
     lateinit var menuPane : VBox
 
@@ -97,12 +52,63 @@ class BaseUIController : Base() {
 
         displayPane.children.add(loginCard.card)
 
+
         directoryButton.setOnAction {
-            directoryAction()
+            displayPane.children.clear()
+            for (boat in databaseGetter.getBoats()) {
+                val yacht = Yacht(boat)
+                val yachtCard = YachtCard(yacht)
+
+                fun getBuyWindow(){
+                    val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
+                    val stage = Stage()
+                    buyWindow.getBuyButton().setOnAction {
+                        buyWindow.addSelectedAccessory()
+                        addedYacht.add(buyWindow.getYacht())
+                        stage.close()
+                    }
+                    val scene = Scene(buyWindow.getWindow())
+                    stage.scene = scene
+                    stage.showAndWait()
+                }
+
+                yachtCard.getBucketButton().setOnAction {
+                    getBuyWindow()
+                }
+
+                yachtCard.getDescriptionButton().setOnAction {
+                    displayPane.children.clear()
+                    val yachtDescriptionCard = YachtDescriptionCard(yacht)
+                    yachtDescriptionCard.getBucketButton().setOnAction {
+                        getBuyWindow()
+                    }
+                    displayPane.children.add(yachtDescriptionCard.card)
+                }
+                displayPane.children.add(yachtCard.card)
+            }
         }
 
         orderButton.setOnAction {
-            orderAction()
+            displayPane.children.clear()
+            if (addedYacht.isNotEmpty()) {
+                for (yacht in addedYacht) {
+                    val orderCard = OrderCard(yacht)
+                    orderCard.setOrderState("Ожидает оплаты")
+
+                    orderCard.getInfoButton().setOnAction {
+                        val orderDescriptionWindow = OrderDescriptionWindow(orderCard.yacht)
+                        val stage = Stage()
+                        orderDescriptionWindow.getCloseButton().setOnAction {
+                            //todo check CheckBox and send Request
+                            stage.close()
+                        }
+                        stage.scene = Scene(orderDescriptionWindow.getWindow())
+                        stage.showAndWait()
+                    }
+
+                    displayPane.children.add(orderCard.card)
+                }
+            }
         }
         profileButton.setOnAction {
             displayPane.children.clear()
