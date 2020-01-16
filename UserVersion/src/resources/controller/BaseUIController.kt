@@ -36,7 +36,7 @@ class BaseUIController : Base() {
                 val yacht = Yacht(boat)
                 val yachtCard = YachtCard(yacht)
 
-                yachtCard.getBucketButton().setOnAction {
+                fun getBuyWindow(){
                     val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
                     val stage = Stage()
                     buyWindow.getBuyButton().setOnAction {
@@ -48,7 +48,20 @@ class BaseUIController : Base() {
                     stage.scene = scene
                     stage.showAndWait()
                 }
-                yachtCard.getDescriptionButton().setOnAction { println("not working") }
+
+                yachtCard.getBucketButton().setOnAction {
+                    getBuyWindow()
+                }
+
+                yachtCard.getDescriptionButton().setOnAction {
+                    displayPane.children.clear()
+                    val yachtDescriptionCard = YachtDescriptionCard(yacht)
+                    yachtDescriptionCard.getBucketButton().setOnAction {
+                        getBuyWindow()
+                    }
+                    println("not working")
+                    displayPane.children.add(yachtDescriptionCard.card)
+                }
                 displayPane.children.add(yachtCard.card)
             }
         }
