@@ -17,10 +17,10 @@ const val cityError : String = "Введите город"
 const val documentError : String = "Введите номер и серию документа"
 
 
-class YachtCard(var yacht: Yacht) {
+class YachtCard(val yacht: Yacht) {
     var card = fabric.getYachtCard(yacht)
 
-    fun getBucketButton() : Button {
+    fun getBuyButton() : Button {
         return ((card.children[1] as HBox).children[2] as Button)
     }
 
@@ -29,15 +29,15 @@ class YachtCard(var yacht: Yacht) {
     }
 }
 
-class YachtDescriptionCard(var yacht: Yacht) {
+class YachtDescriptionCard(val yacht: Yacht) {
     var card = fabric.getDescriptionCard(yacht)
 
-    fun getBucketButton() : Button {
+    fun getBuyButton() : Button {
         return (card.children[6]  as Button)
     }
 }
 
-class OrderCard(var yacht: Yacht) {
+class OrderCard(val yacht: Yacht) {
     var card = fabric.getOrderCard(yacht)
 
     fun setOrderState(state : String) {
@@ -49,7 +49,7 @@ class OrderCard(var yacht: Yacht) {
     }
 }
 
-class AccessoryCard(var accessory : AccessoryId) {
+class AccessoryCard(val accessory : AccessoryId) {
     var card = fabric.getAccessoryCard(accessory)
 
     fun getCheckBox() : CheckBox {

@@ -42,15 +42,13 @@ class Sender {
         return Gson().fromJson(json, object : TypeToken<List<String>>() {}.type)
     }
 
-    fun addOrder(order : Orders, contract: Contract, details: Details) : ArrayList<String> {
+    fun addOrder(order : Orders, contract: Contract, details: ArrayList<Details>) {
         val map : MutableMap<String, Any> = mutableMapOf()
         map["orders"] = order
         map["contract"] = contract
         map["details"] = details
 
-        val url = "https://yaht.azurewebsites.net/Account/AppRegistration?json=${Gson().toJson(map)}"
-        val json = URL(url).openStream().bufferedReader().use{ it.readText() }
-
-        return Gson().fromJson(json, object : TypeToken<List<String>>() {}.type)
+        val url = "https://yaht.azurewebsites.net/Orders/Set?json=${Gson().toJson(map)}".replace(' ', '_')
+        URL(url).openStream().bufferedReader().use{ it.readText() }
     }
 }

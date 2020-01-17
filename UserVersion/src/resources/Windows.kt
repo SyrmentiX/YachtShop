@@ -14,22 +14,26 @@ class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
     private val window = fabric.getAccessoryWindow()
     private val cardList : MutableList<AccessoryCard> = arrayListOf()
     private val yacht = yacht
-
+    private var totalPrice = yacht.price
     init {
         for (addition in accessory) {
             val additionCard = AccessoryCard(addition)
             additionCard.getCheckBox().setOnAction {
                 if (!additionCard.getCheckBox().isSelected) {
-                    this.yacht.price -= additionCard.getAccessoryPrice()
+                    this.totalPrice -= additionCard.getAccessoryPrice()
                 } else {
-                    this.yacht.price += additionCard.getAccessoryPrice()
+                    this.totalPrice += additionCard.getAccessoryPrice()
                 }
-                getTotalPriceLabel().text = beginSentence + this.yacht.price.toString() + endSentence
+                getTotalPriceLabel().text = beginSentence + this.totalPrice.toString() + endSentence
             }
             getCenterPane().children.add(additionCard.card)
             cardList.add(additionCard)
             getTotalPriceLabel().text = beginSentence + this.yacht.price.toString() + endSentence
         }
+    }
+
+    fun resetPrice() {
+        totalPrice = yacht.price
     }
 
     fun getYacht() : Yacht {
@@ -40,7 +44,7 @@ class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
         return window
     }
 
-    private fun getSelectedAccessory() : ArrayList<AccessoryId> {
+    fun getSelectedAccessory() : ArrayList<AccessoryId> {
         val selectedAccessory : ArrayList<AccessoryId> = arrayListOf()
         for (card in cardList) {
             if (card.getCheckBox().isSelected) {
@@ -48,10 +52,6 @@ class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
             }
         }
         return selectedAccessory
-    }
-
-    fun addSelectedAccessory() {
-        yacht.selectedAccessory = getSelectedAccessory()
     }
 
     private fun getCenterPane() : VBox {
@@ -91,8 +91,15 @@ class OrderDescriptionWindow(yacht: Yacht) {
         return (((window.bottom as VBox).children[1] as HBox).children[1] as Button)
     }
 
-    fun isPayedCheckBox() : Boolean {
+    fun isPayed() : Boolean {
         return (((window.bottom as VBox).children[1] as HBox).children[0] as CheckBox).isSelected
     }
 
+    fun getCheckBox() : CheckBox {
+        return (((window.bottom as VBox).children[1] as HBox).children[0] as CheckBox)
+    }
+
+    fun disableCheckBox() {
+        getCheckBox().isDisable = true
+    }
 }

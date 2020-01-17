@@ -113,6 +113,8 @@ class Fit
     var boatId = 0
 }
 
+
+//order + contract + details
 class Orders
 {
     var orderId = 0

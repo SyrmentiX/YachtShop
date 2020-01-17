@@ -7,11 +7,10 @@ import resources.*
 const val nonExitedUserError = "Пользователь несуществует"
 
 open class Base {
-    var addedYacht : ObservableList<Yacht> = FXCollections.observableArrayList()
-    var orderedYacht : ObservableList<OrderCard> = FXCollections.observableArrayList()
+    var addedYacht : ObservableList<OrderCard> = FXCollections.observableArrayList()
     var isOrderLoaded : Boolean = false
+    var isGuest = true
     var user : Customers = Customers()
-    val fabric = Factory()
     val databaseGetter = DatabaseGetter()
     val sender = Sender()
 
