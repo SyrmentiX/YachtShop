@@ -81,11 +81,7 @@ class Factory {
                     init {
                         prefWidth = 780.0
                         prefHeight = 440.0
-                        val list : ArrayList<Image> = arrayListOf()
-                        for (i in 1..3){
-                            list.add(Image("resources\\assert\\yachtPic\\"+ yacht.id.toString() +"\\$i.jpg"))
-                        }
-                        val slider = ImageSlider(list)
+                        val slider = ImageSlider(GlobalVar.getBoatImages(yacht.id))
                         children.addAll(slider.getBox())
                     }
                 }
