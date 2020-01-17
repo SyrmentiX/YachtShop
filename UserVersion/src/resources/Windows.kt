@@ -10,11 +10,11 @@ import javafx.scene.layout.VBox
 const val beginSentence = "Цена: "
 const val endSentence = " руб."
 
-class BuyWindow(accessory : ArrayList<AccessoryId>, yacht: Yacht) {
+class BuyWindow(accessory : ArrayList<AccessoryId>, private val yacht: Yacht) {
     private val window = fabric.getAccessoryWindow()
     private val cardList : MutableList<AccessoryCard> = arrayListOf()
-    private val yacht = yacht
     private var totalPrice = yacht.price
+
     init {
         for (addition in accessory) {
             val additionCard = AccessoryCard(addition)
@@ -89,10 +89,6 @@ class OrderDescriptionWindow(yacht: Yacht) {
 
     fun getCloseButton() : Button {
         return (((window.bottom as VBox).children[1] as HBox).children[1] as Button)
-    }
-
-    fun isPayed() : Boolean {
-        return (((window.bottom as VBox).children[1] as HBox).children[0] as CheckBox).isSelected
     }
 
     fun getCheckBox() : CheckBox {

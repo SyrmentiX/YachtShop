@@ -20,7 +20,7 @@ class Sender {
         }
     }
 
-    fun checkAuth(login : String, password : String) : Int { // !!! Если возвращён -1 - авторизация не прошла или произошла ошибка.
+    fun authorization(login : String, password : String) : Int { // !!! Если возвращён -1 - авторизация не прошла или произошла ошибка.
         val auth = Auth()
         auth.username = login.replace(" ", "")
         auth.password = password.replace(" ", "")
@@ -42,7 +42,7 @@ class Sender {
         return Gson().fromJson(json, object : TypeToken<List<String>>() {}.type)
     }
 
-    fun addOrder(order : Orders, contract: Contract, details: ArrayList<Details>) {
+    fun sendOrder(order : Orders, contract: Contract, details: ArrayList<Details>) {
         val map : MutableMap<String, Any> = mutableMapOf()
         map["orders"] = order
         map["contract"] = contract

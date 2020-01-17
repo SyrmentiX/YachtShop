@@ -16,8 +16,7 @@ const val addressError : String = "Введите адрес"
 const val cityError : String = "Введите город"
 const val documentError : String = "Введите номер и серию документа"
 
-
-class YachtCard(val yacht: Yacht) {
+class YachtCard(yacht: Yacht) {
     var card = fabric.getYachtCard(yacht)
 
     fun getBuyButton() : Button {
@@ -29,7 +28,7 @@ class YachtCard(val yacht: Yacht) {
     }
 }
 
-class YachtDescriptionCard(val yacht: Yacht) {
+class YachtDescriptionCard(yacht: Yacht) {
     var card = fabric.getDescriptionCard(yacht)
 
     fun getBuyButton() : Button {
@@ -98,50 +97,50 @@ class LoginCard {
 class RegisterCard {
     val card = fabric.getRegistrationCard()
 
-    fun getLogin() : String {
+    private fun getLogin() : String {
         return (card.children[1] as TextField).text
     }
 
-    fun getEMail() : String {
+    private fun getEMail() : String {
         return (card.children[2] as TextField).text
     }
 
-    fun getPassword() : String {
+    private fun getPassword() : String {
         return (card.children[3] as PasswordField).text
     }
 
-    fun getFirstName() : String {
+    private fun getFirstName() : String {
         return ((card.children[4] as HBox).children[0] as TextField).text
     }
 
-    fun getSecondName() : String {
+    private fun getSecondName() : String {
         return ((card.children[4] as HBox).children[1] as TextField).text
     }
 
-    fun getBirthDate() : String {
+    private fun getBirthDate() : String {
         if (((card.children[5] as HBox).children[0] as DatePicker).value == null) {
             return ""
         }
         return ((card.children[5] as HBox).children[0] as DatePicker).value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
     }
 
-    fun getPhone() : String {
+    private fun getPhone() : String {
         return ((card.children[5] as HBox).children[1] as TextField).text
     }
 
-    fun getAddress() : String {
+    private fun getAddress() : String {
         return (card.children[6] as TextField).text
     }
 
-    fun getCity() : String {
+    private fun getCity() : String {
         return (card.children[7] as TextField).text
     }
 
-    fun getDocumentType() : DocumentName {
+    private fun getDocumentType() : DocumentName {
         return (card.children[8] as ChoiceBox<*>).value as DocumentName
     }
 
-    fun getDocumentSeries() : String {
+    private fun getDocumentSeries() : String {
         return (card.children[9] as TextField).text
     }
 

@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Cards.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Cards.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Factory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Sender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Sender.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Windows.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Windows.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Yacht.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Yacht.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579249168452</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="MergeResolve design">
+      <created>1579249340004</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1579249340004</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -242,7 +255,8 @@
     <MESSAGE value="add order request" />
     <MESSAGE value="MergeResolve" />
     <MESSAGE value="add send order to server" />
-    <option name="LAST_COMMIT_MESSAGE" value="add send order to server" />
+    <MESSAGE value="MergeResolve design" />
+    <option name="LAST_COMMIT_MESSAGE" value="MergeResolve design" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="197" key="#Project_Structure" timestamp="1579155571000">
@@ -261,10 +275,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="83" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1577785735490" />
-    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579249166390">
+    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579261631302">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579249166390" />
+    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579261631302" />
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1577864475064">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -274,45 +288,45 @@
     </state>
     <state x="506" y="172" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1578975119674" />
     <state x="607" y="216" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1579155563835" />
-    <state width="778" height="232" key="GridCell.Tab.0.bottom" timestamp="1579249287142">
+    <state width="1557" height="232" key="GridCell.Tab.0.bottom" timestamp="1579260486871">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="778" height="232" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579249287142" />
+    <state width="1557" height="232" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579260486871" />
     <state width="1877" height="363" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311379" />
-    <state width="778" height="232" key="GridCell.Tab.0.center" timestamp="1579249287142">
+    <state width="1557" height="232" key="GridCell.Tab.0.center" timestamp="1579260486871">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="778" height="232" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579249287142" />
+    <state width="1557" height="232" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579260486871" />
     <state width="1877" height="363" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311378" />
-    <state width="778" height="232" key="GridCell.Tab.0.left" timestamp="1579249287142">
+    <state width="1557" height="232" key="GridCell.Tab.0.left" timestamp="1579260486871">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="778" height="232" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579249287142" />
+    <state width="1557" height="232" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579260486871" />
     <state width="1877" height="363" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311378" />
-    <state width="778" height="232" key="GridCell.Tab.0.right" timestamp="1579249287142">
+    <state width="1557" height="232" key="GridCell.Tab.0.right" timestamp="1579260486871">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="778" height="232" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579249287142" />
+    <state width="1557" height="232" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579260486871" />
     <state width="1877" height="363" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311379" />
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1579248928499">
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1579254179385">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579248928499" />
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579254179385" />
     <state width="1877" height="363" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1579158310832" />
-    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1579248928499">
+    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1579254179384">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1579248928499" />
+    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1579254179384" />
     <state width="1877" height="363" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1579158310831" />
-    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1579248928499">
+    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1579254179384">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1579248928499" />
+    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1579254179384" />
     <state width="1877" height="363" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1579158310831" />
-    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1579248928499">
+    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1579254179385">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1579248928499" />
+    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1579254179385" />
     <state width="1877" height="363" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1579158310832" />
     <state x="152" y="74" key="MergeDialog" timestamp="1579149006706">
       <screen x="0" y="0" width="1600" height="860" />
@@ -352,7 +366,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/resources/controller/BaseUIController.kt</url>
-          <line>74</line>
+          <line>78</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>

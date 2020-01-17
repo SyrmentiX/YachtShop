@@ -28,7 +28,11 @@ class BaseUIController : Base() {
     @FXML
     lateinit var menuPane : VBox
 
-    fun createUserOrder(yacht: Yacht) : Orders {
+    private fun setUsername() {
+        profileButton.text = user.firstName + " " + user.secondName
+    }
+
+    private fun createUserOrder(yacht: Yacht) : Orders {
         val order = Orders()
         order.customerId = user.customerId
         order.deliveryAddress = user.address
@@ -37,7 +41,7 @@ class BaseUIController : Base() {
         return order
     }
 
-    fun createOrderContract(yacht: Yacht, orderID : Int) : Contract {
+    private fun createOrderContract(yacht: Yacht, orderID : Int) : Contract {
         val contract = Contract()
         contract.contractTotalPrice = yacht.price
         contract.contractTotalPriceIncVat = yacht.priceWithVat
@@ -46,7 +50,7 @@ class BaseUIController : Base() {
         return contract
     }
 
-    fun createOrderDetails(yacht: Yacht, orderID: Int) : ArrayList<Details> {
+    private fun createOrderDetails(yacht: Yacht, orderID: Int) : ArrayList<Details> {
         val details : ArrayList<Details> = arrayListOf()
         for (accessory in yacht.selectedAccessory) {
             val detail = Details()
@@ -73,7 +77,7 @@ class BaseUIController : Base() {
                 val order = createUserOrder(orderCard.yacht)
                 val contract = createOrderContract(orderCard.yacht, order.orderId)
                 val detail = createOrderDetails(orderCard.yacht, order.orderId)
-                sender.addOrder(order, contract, detail)
+                sender.sendOrder(order, contract, detail)
                 orderDescriptionWindow.disableCheckBox()
                 orderCard.setOrderState("Оплачено")
                 orderCard.yacht.isLocal = false
@@ -84,7 +88,46 @@ class BaseUIController : Base() {
         return orderCard
     }
 
-    private fun directoryAction() {
+    private fun getLoginCardWithAction() : LoginCard {
+        val loginCard = LoginCard()
+        loginCard.getLoginButton().setOnAction {
+            var errorMessage = loginCard.checkInputCorrect()
+            if (errorMessage.isEmpty()) {
+                val userID = sender.authorization(loginCard.getUsername(), loginCard.getPassword())
+                if (userID == -1) {
+                    errorMessage = nonExitedUserError
+                } else {
+                    user = databaseGetter.getUserById(userID)
+                    setUsername()
+                    isGuest = false
+                    loadDirectory()
+                }
+            }
+            loginCard.setErrorText( errorMessage)
+        }
+
+        loginCard.getRegisterButton().setOnAction {
+            displayPane.children.clear()
+            val registerCard = RegisterCard()
+            registerCard.getCancelButton().setOnAction {
+                displayPane.children.clear()
+                displayPane.children.add(loginCard.card)
+            }
+            registerCard.getRegisterButton().setOnAction {
+                val errorMessages = registerCard.checkDataCorrect()
+                if (errorMessages.isEmpty()) {
+                    val auth = registerCard.getAuthFromInputData()
+                    val customer = registerCard.getCustomerFromInputData()
+                    sender.registration(auth, customer)
+                }
+                registerCard.setErrorText(errorMessages)
+            }
+            displayPane.children.add(registerCard.card)
+        }
+        return loginCard
+    }
+
+    private fun loadDirectory() {
         displayPane.children.clear()
         for (boat in databaseGetter.getBoats()) {
             val yacht = Yacht(boat)
@@ -134,7 +177,7 @@ class BaseUIController : Base() {
         }
     }
 
-    private fun fillOrder() {
+    private fun loadOrderCard() {
         val userOrders = databaseGetter.getOrdersByUserId(user.customerId)
         for (order in userOrders) {
             val boat = databaseGetter.getBoatById(order.boatId)
@@ -153,58 +196,15 @@ class BaseUIController : Base() {
         }
     }
 
-    private fun orderAction() {
+    private fun loadOrders() {
         displayPane.children.clear()
         if (!isOrderLoaded) {
-            fillOrder()
+            loadOrderCard()
             isOrderLoaded = true
         }
         for (card in addedYacht) {
             displayPane.children.add(card.card)
         }
-    }
-
-    private fun getLoginCardWithAction() : LoginCard {
-        val loginCard = LoginCard()
-        loginCard.getLoginButton().setOnAction {
-            var errorMessage = loginCard.checkInputCorrect()
-            if (errorMessage.isEmpty()) {
-                val userID = sender.checkAuth(loginCard.getUsername(), loginCard.getPassword())
-                if (userID == -1) {
-                    errorMessage = nonExitedUserError
-                } else {
-                    user = databaseGetter.getUserById(userID)
-                    setUserName()
-                    isGuest = false
-                    directoryAction()
-                }
-            }
-            loginCard.setErrorText( errorMessage)
-        }
-
-        loginCard.getRegisterButton().setOnAction {
-            displayPane.children.clear()
-            val registerCard = RegisterCard()
-            registerCard.getCancelButton().setOnAction {
-                displayPane.children.clear()
-                displayPane.children.add(loginCard.card)
-            }
-            registerCard.getRegisterButton().setOnAction {
-                val errorMessages = registerCard.checkDataCorrect()
-                if (errorMessages.isEmpty()) {
-                    val auth = registerCard.getAuthFromInputData()
-                    val customer = registerCard.getCustomerFromInputData()
-                     sender.registration(auth, customer)
-                }
-                registerCard.setErrorText(errorMessages)
-            }
-            displayPane.children.add(registerCard.card)
-        }
-        return loginCard
-    }
-
-    private fun setUserName() {
-        profileButton.text = user.firstName + " " + user.secondName
     }
 
     private fun loadLoginMenu() {
@@ -215,18 +215,18 @@ class BaseUIController : Base() {
     fun initialize() {
         profileButton.background = Background(BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY))
         menuPane.background = Background(BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY))
-        setUserName()
+        setUsername()
         loadLoginMenu()
 
         directoryButton.setOnAction {
-            directoryAction()
+            loadDirectory()
         }
 
         orderButton.setOnAction {
             if (isGuest) {
                 loadLoginMenu()
             } else {
-                orderAction()
+                loadOrders()
             }
         }
 

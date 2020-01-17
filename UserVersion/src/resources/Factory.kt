@@ -12,7 +12,7 @@ import javafx.scene.text.Font
 import java.util.function.DoubleConsumer
 
 class Factory {
-    fun getYachtCard(yacht : Yacht) : VBox {
+    fun getYachtCard(yacht: Yacht): VBox {
         return object : VBox() {
             init {
                 width = 390.0
@@ -49,7 +49,7 @@ class Factory {
                         val buyIcon = ImageView(GlobalVar.getIconBuy())
                         buyIcon.fitHeight = 25.0
                         buyIcon.fitWidth = 25.0
-                        val bucketButton = object : Button("",buyIcon) {
+                        val bucketButton = object : Button("", buyIcon) {
                             init {
                                 id = "buyButton"
                                 prefWidth = 25.0
@@ -57,7 +57,7 @@ class Factory {
                                 style = "-fx-background-radius: 50em; " +
                                         "-fx-min-width: 25px; " +
                                         "-fx-min-height: 25px; " +
-                                        "-fx-max-width: 25px; "  +
+                                        "-fx-max-width: 25px; " +
                                         "-fx-max-height: 25px;"
                                 setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
                             }
@@ -65,20 +65,20 @@ class Factory {
                         val desctiptionIcon = ImageView(GlobalVar.getIconDescription())
                         desctiptionIcon.fitHeight = 25.0
                         desctiptionIcon.fitWidth = 25.0
-                        val infoButton = object : Button("",desctiptionIcon) {
+                        val infoButton = object : Button("", desctiptionIcon) {
                             init {
                                 id = "descriptionButton"
                                 prefWidth = 25.0
                                 prefHeight = 25.0
                                 style = "-fx-background-radius: 50em; " +
-                                "-fx-min-width: 25px; " +
+                                        "-fx-min-width: 25px; " +
                                         "-fx-min-height: 25px; " +
-                                        "-fx-max-width: 25px; "  +
+                                        "-fx-max-width: 25px; " +
                                         "-fx-max-height: 25px;"
                                 setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
                             }
                         }
-                        children.addAll(yachtName,yachtPrice,bucketButton, infoButton)
+                        children.addAll(yachtName, yachtPrice, bucketButton, infoButton)
                     }
                 }
                 children.addAll(yachtImage, yachtInfo)
@@ -86,12 +86,12 @@ class Factory {
         }
     }
 
-    fun getDescriptionCard(yacht: Yacht) : VBox{
+    fun getDescriptionCard(yacht: Yacht): VBox {
         return object : VBox() {
             init {
                 width = 780.0
                 height = 1000.0
-                val imageCarousel = object : BorderPane(){
+                val imageCarousel = object : BorderPane() {
                     init {
                         prefWidth = 780.0
                         prefHeight = 440.0
@@ -99,7 +99,7 @@ class Factory {
                         children.addAll(slider.getBox())
                     }
                 }
-                val yachtName = object : Label(){
+                val yachtName = object : Label() {
                     init {
                         prefWidth = 780.0
                         prefHeight = 50.0
@@ -108,7 +108,7 @@ class Factory {
                         alignment = Pos.CENTER
                     }
                 }
-                val yachtColour = object : Label(){
+                val yachtColour = object : Label() {
                     init {
                         prefWidth = 765.0
                         prefHeight = 10.0
@@ -118,7 +118,7 @@ class Factory {
                         setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
                     }
                 }
-                val yachtWood = object : Label(){
+                val yachtWood = object : Label() {
                     init {
                         prefWidth = 765.0
                         prefHeight = 10.0
@@ -128,7 +128,7 @@ class Factory {
                         setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
                     }
                 }
-                val yachtType = object : Label(){
+                val yachtType = object : Label() {
                     init {
                         prefWidth = 765.0
                         prefHeight = 10.0
@@ -138,7 +138,7 @@ class Factory {
                         setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
                     }
                 }
-                val yachtNumberOfRowers = object : Label(){
+                val yachtNumberOfRowers = object : Label() {
                     init {
                         prefWidth = 765.0
                         prefHeight = 10.0
@@ -158,12 +158,20 @@ class Factory {
                         setMargin(this, Insets(30.0, 215.0, 20.0, 215.0))
                     }
                 }
-                children.addAll(imageCarousel,yachtName,yachtType,yachtWood,yachtColour,yachtNumberOfRowers,bucketButton)
+                children.addAll(
+                    imageCarousel,
+                    yachtName,
+                    yachtType,
+                    yachtWood,
+                    yachtColour,
+                    yachtNumberOfRowers,
+                    bucketButton
+                )
             }
         }
     }
 
-    fun getOrderCard (yacht : Yacht) : AnchorPane {
+    fun getOrderCard(yacht: Yacht): AnchorPane {
         return object : AnchorPane() {
             init {
                 width = 790.0
@@ -245,7 +253,7 @@ class Factory {
         }
     }
 
-    fun getAccessoryCard(accessory: AccessoryId) : HBox {
+    fun getAccessoryCard(accessory: AccessoryId): HBox {
         return object : HBox() {
             init {
                 prefWidth = 295.0
@@ -265,111 +273,6 @@ class Factory {
                     }
                 }
                 children.addAll(checkBox, accessoryPrice)
-            }
-        }
-    }
-
-    fun getAccessoryWindow() : BorderPane {
-        return object : BorderPane() {
-            init {
-                prefWidth = 300.0
-                prefHeight = 500.0
-                val center = object : VBox() {
-                    init {
-                        prefHeight = 400.0
-                        prefWidth = 300.0
-                        setMargin(this, Insets(20.0, 0.0, 0.0, 5.0))
-                    }
-                }
-                this.center = center
-
-                val bottom = object : HBox() {
-                    init {
-                        prefWidth = 300.0
-                        prefHeight = 40.0
-                        val totalPrice = object : Label() {
-                            init {
-                                alignment = Pos.CENTER
-                                prefWidth = 230.0
-                                prefHeight = 40.0
-                            }
-                        }
-                        val buyButton = object : Button() {
-                            init {
-                                prefWidth = 60.0
-                                prefHeight = 20.0
-                                setMargin(this, Insets(10.0, 0.0, 0.0, 5.0))
-                                text = "Buy"
-                            }
-                        }
-                        children.addAll(totalPrice, buyButton)
-                    }
-                }
-                this.bottom = bottom
-            }
-        }
-    }
-
-    fun getOrderDescriptionWindow(yacht: Yacht) : BorderPane {
-        return object : BorderPane() {
-            init {
-                this.top = object : Label() {
-                    init {
-                        text = yacht.name
-                        prefWidth = 300.0
-                        prefHeight = 30.0
-                        alignment = Pos.CENTER
-                        setMargin(this, Insets(5.0, 0.0,0.0,0.0))
-                    }
-                }
-
-                this.center = object : VBox() {
-                    init {
-                        prefWidth = 100.0
-                        prefHeight = 370.0
-                    }
-                }
-
-                this.bottom = object : VBox() {
-                    init {
-                        prefHeight = 75.0
-                        prefWidth = 300.0
-                        val totalPrice = object : Label() {
-                            init {
-                                prefWidth = 295.0
-                                prefHeight = 30.0
-                                alignment = Pos.CENTER_RIGHT
-                                text = "Общая сумма (с НДС): " + yacht.priceWithVat + " руб."
-                            }
-                        }
-
-                        val metaInfo = object : HBox() {
-                            init {
-                                prefHeight = 40.0
-                                prefWidth = 300.0
-                                val payCheck = object : CheckBox() {
-                                    init {
-                                        text = "Оплата"
-                                        prefWidth = 215.0
-                                        prefHeight = 40.0
-                                        setMargin(this, Insets(5.0,0.0,0.0,5.0))
-                                    }
-                                }
-
-                                val closeButton = object : Button() {
-                                    init {
-                                        text = "Закрыть"
-                                        prefWidth = 70.0
-                                        prefHeight = 20.0
-                                        setMargin(this, Insets(10.0,0.0,0.0,0.0))
-                                    }
-                                }
-                                this.children.addAll(payCheck, closeButton)
-                            }
-                        }
-                        this.children.addAll(totalPrice, metaInfo)
-                    }
-                }
             }
         }
     }
@@ -657,6 +560,111 @@ class Factory {
                 }
 
                 this.children.addAll(buttonBox, errorMessageLabel)
+            }
+        }
+    }
+
+    fun getAccessoryWindow(): BorderPane {
+        return object : BorderPane() {
+            init {
+                prefWidth = 300.0
+                prefHeight = 500.0
+                val center = object : VBox() {
+                    init {
+                        prefHeight = 400.0
+                        prefWidth = 300.0
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 5.0))
+                    }
+                }
+                this.center = center
+
+                val bottom = object : HBox() {
+                    init {
+                        prefWidth = 300.0
+                        prefHeight = 40.0
+                        val totalPrice = object : Label() {
+                            init {
+                                alignment = Pos.CENTER
+                                prefWidth = 230.0
+                                prefHeight = 40.0
+                            }
+                        }
+                        val buyButton = object : Button() {
+                            init {
+                                prefWidth = 60.0
+                                prefHeight = 20.0
+                                setMargin(this, Insets(10.0, 0.0, 0.0, 5.0))
+                                text = "Buy"
+                            }
+                        }
+                        children.addAll(totalPrice, buyButton)
+                    }
+                }
+                this.bottom = bottom
+            }
+        }
+    }
+
+    fun getOrderDescriptionWindow(yacht: Yacht): BorderPane {
+        return object : BorderPane() {
+            init {
+                this.top = object : Label() {
+                    init {
+                        text = yacht.name
+                        prefWidth = 300.0
+                        prefHeight = 30.0
+                        alignment = Pos.CENTER
+                        setMargin(this, Insets(5.0, 0.0, 0.0, 0.0))
+                    }
+                }
+
+                this.center = object : VBox() {
+                    init {
+                        prefWidth = 100.0
+                        prefHeight = 370.0
+                    }
+                }
+
+                this.bottom = object : VBox() {
+                    init {
+                        prefHeight = 75.0
+                        prefWidth = 300.0
+                        val totalPrice = object : Label() {
+                            init {
+                                prefWidth = 295.0
+                                prefHeight = 30.0
+                                alignment = Pos.CENTER_RIGHT
+                                text = "Общая сумма (с НДС): " + yacht.priceWithVat + " руб."
+                            }
+                        }
+
+                        val metaInfo = object : HBox() {
+                            init {
+                                prefHeight = 40.0
+                                prefWidth = 300.0
+                                val payCheck = object : CheckBox() {
+                                    init {
+                                        text = "Оплата"
+                                        prefWidth = 215.0
+                                        prefHeight = 40.0
+                                        setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
+                                    }
+                                }
+
+                                val closeButton = object : Button() {
+                                    init {
+                                        text = "Закрыть"
+                                        prefWidth = 70.0
+                                        prefHeight = 20.0
+                                        setMargin(this, Insets(10.0, 0.0, 0.0, 0.0))
+                                    }
+                                }
+                                this.children.addAll(payCheck, closeButton)
+                            }
+                        }
+                        this.children.addAll(totalPrice, metaInfo)
+                    }
+                }
             }
         }
     }
