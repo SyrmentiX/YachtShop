@@ -46,21 +46,35 @@ class Factory {
                                 setMargin(this, Insets(5.0, 5.0, 0.0, 5.0))
                             }
                         }
-                        val bucketButton = object : Button() {
+                        val buyIcon = ImageView(GlobalVar.getIconBuy())
+                        buyIcon.fitHeight = 25.0
+                        buyIcon.fitWidth = 25.0
+                        val bucketButton = object : Button("",buyIcon) {
                             init {
                                 id = "buyButton"
                                 prefWidth = 25.0
                                 prefHeight = 25.0
-                                text = "$"
+                                style = "-fx-background-radius: 50em; " +
+                                        "-fx-min-width: 25px; " +
+                                        "-fx-min-height: 25px; " +
+                                        "-fx-max-width: 25px; "  +
+                                        "-fx-max-height: 25px;"
                                 setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
                             }
                         }
-                        val infoButton = object : Button() {
+                        val desctiptionIcon = ImageView(GlobalVar.getIconDescription())
+                        desctiptionIcon.fitHeight = 25.0
+                        desctiptionIcon.fitWidth = 25.0
+                        val infoButton = object : Button("",desctiptionIcon) {
                             init {
                                 id = "descriptionButton"
                                 prefWidth = 25.0
                                 prefHeight = 25.0
-                                text = "D"
+                                style = "-fx-background-radius: 50em; " +
+                                "-fx-min-width: 25px; " +
+                                        "-fx-min-height: 25px; " +
+                                        "-fx-max-width: 25px; "  +
+                                        "-fx-max-height: 25px;"
                                 setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
                             }
                         }

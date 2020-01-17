@@ -24,14 +24,14 @@ class GlobalVar {
 
         fun getIconBuy() : Image {
             if (!::iconBuy.isInitialized) {
-                iconBuy = Image("") // TODO (Илья) - добавить путь к иконке.
+                iconBuy = Image("resources\\assert\\icons\\buyIcon.png")
             }
             return iconBuy
         }
 
         fun getIconDescription() : Image {
             if (!::iconDescription.isInitialized) {
-                iconDescription = Image("") // TODO (Илья) - добавить путь к иконке.
+                iconDescription = Image("resources\\assert\\icons\\descriptionIcon.png")
             }
             return iconDescription
         }
