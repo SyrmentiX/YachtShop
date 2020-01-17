@@ -36,7 +36,7 @@ class BaseUIController : Base() {
                 val stage = Stage()
                 buyWindow.getBuyButton().setOnAction {
                     val vat = databaseGetter.getVat(yacht.vat)
-                    buyWindow.getYacht().price += (yacht.price * vat.vat1).toInt()
+                    buyWindow.getYacht().priceWithVat += (yacht.price * vat.vat1).toInt()
                     buyWindow.addSelectedAccessory()
                     addedYacht.add(buyWindow.getYacht())
                     stage.close()

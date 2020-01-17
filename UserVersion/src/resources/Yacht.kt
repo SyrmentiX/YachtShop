@@ -11,6 +11,7 @@ class Yacht(boat: Boat) {
     var numberOfRowers = boat.numberOfRowers
     var other : String = String()
     var price = boat.basePrice
+    var priceWithVat = boat.basePrice
     var image = Image("resources\\assert\\yachtPic\\"+ boat.boatId.toString() +"\\1.jpg")
     var selectedAccessory : ArrayList<AccessoryId> = arrayListOf()
     var id = boat.boatId

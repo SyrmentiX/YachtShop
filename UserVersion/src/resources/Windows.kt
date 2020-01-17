@@ -91,8 +91,8 @@ class OrderDescriptionWindow(yacht: Yacht) {
         return (((window.bottom as VBox).children[1] as HBox).children[1] as Button)
     }
 
-    fun getPayCheckBox() : CheckBox {
-        return (((window.bottom as VBox).children[1] as HBox).children[0] as CheckBox)
+    fun isPayedCheckBox() : Boolean {
+        return (((window.bottom as VBox).children[1] as HBox).children[0] as CheckBox).isSelected
     }
 
 }

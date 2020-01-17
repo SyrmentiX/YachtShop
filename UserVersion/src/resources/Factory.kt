@@ -191,7 +191,7 @@ class Factory {
                                     init {
                                         prefWidth = 400.0
                                         prefHeight = 40.0
-                                        text = "Цена: " + yacht.price + " руб."
+                                        text = "Цена: " + yacht.priceWithVat + " руб."
                                         font = Font.font("Comic Sans MS", 20.0)
                                         setMargin(this, Insets(5.0, 0.0, 0.0, 0.0))
                                     }
@@ -325,6 +325,7 @@ class Factory {
                                 prefWidth = 295.0
                                 prefHeight = 30.0
                                 alignment = Pos.CENTER_RIGHT
+                                text = "Общая сумма (с НДС): " + yacht.priceWithVat + " руб."
                             }
                         }
 
