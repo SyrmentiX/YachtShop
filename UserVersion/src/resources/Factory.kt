@@ -1,5 +1,7 @@
 package resources
 
+import com.jfoenix.controls.JFXButton
+import com.sun.javaws.util.JfxHelper
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.geometry.Insets
@@ -49,6 +51,7 @@ class Factory {
                         val buyIcon = ImageView(GlobalVar.getIconBuy())
                         buyIcon.fitHeight = 25.0
                         buyIcon.fitWidth = 25.0
+
                         val bucketButton = object : Button("",buyIcon) {
                             init {
                                 id = "buyButton"
@@ -78,7 +81,7 @@ class Factory {
                                 setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
                             }
                         }
-                        children.addAll(yachtName,yachtPrice,bucketButton, infoButton)
+                        children.addAll(yachtName, yachtPrice, bucketButton, infoButton)
                     }
                 }
                 children.addAll(yachtImage, yachtInfo)
@@ -148,11 +151,14 @@ class Factory {
                         setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
                     }
                 }
-                val bucketButton = object : Button() {
+                val bucketButton = object : JFXButton() {
                     init {
                         id = "buyButton"
                         prefWidth = 350.0
                         prefHeight = 50.0
+                        style = "jfx-button-type: RAISED;" +
+                                "-fx-background-color: #3399ff;" +
+                                "-fx-text-fill: white;"
                         text = "Оформить Заказ"
                         font = Font.font("Comic Sans MS", 30.0)
                         setMargin(this, Insets(30.0, 215.0, 20.0, 215.0))

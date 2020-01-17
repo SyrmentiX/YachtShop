@@ -1,13 +1,19 @@
 package resources.controller
 
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import javafx.fxml.FXML
 import javafx.geometry.Insets
 import javafx.scene.Scene
 import javafx.scene.control.Button
+import javafx.scene.control.ProgressIndicator
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import javafx.stage.Stage
 import resources.*
+import kotlinx.coroutines.*
+import kotlin.concurrent.thread
+import kotlinx.coroutines.launch
 
 class BaseUIController : Base() {
     @FXML
@@ -25,13 +31,14 @@ class BaseUIController : Base() {
     @FXML
     lateinit var menuPane : VBox
 
-    private fun directoryAction() {
-        displayPane.children.clear()
+    private var list : ObservableList<YachtCard> = FXCollections.observableArrayList()
+
+    private suspend fun getYachtList() = coroutineScope {
         for (boat in databaseGetter.getBoats()) {
             val yacht = Yacht(boat)
             val yachtCard = YachtCard(yacht)
 
-            fun getBuyWindow(){
+            fun getBuyWindow() {
                 val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
                 val stage = Stage()
                 buyWindow.getBuyButton().setOnAction {
@@ -58,8 +65,26 @@ class BaseUIController : Base() {
                 }
                 displayPane.children.add(yachtDescriptionCard.card)
             }
-            displayPane.children.add(yachtCard.card)
+            //            displayPane.children.add(yachtCard.card)
+            list.add(yachtCard)
         }
+    }
+
+
+    private fun directoryAction() {
+
+        displayPane.children.clear()
+        val indecator = ProgressIndicator()
+        displayPane.children.add(indecator)
+
+        val a = GlobalScope.launch {
+            getYachtList()
+            displayPane.children.clear()
+            list.forEach {
+                displayPane.children.add(it.card)
+            }
+        }
+        a.start()
     }
 
     private fun getOrderCard(yacht: Yacht, state: String) : OrderCard {
