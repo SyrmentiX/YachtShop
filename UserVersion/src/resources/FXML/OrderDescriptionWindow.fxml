@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="500.0" prefWidth="300.0">
+         <center>
+            <VBox prefHeight="365.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
+         </center>
+         <top>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="300.0" text="Label" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets top="5.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <bottom>
+            <VBox prefHeight="75.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="295.0" text="Общая сумма: 5000000 руб.">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="215.0" text="Оплата">
+                           <HBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="Закрыть">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children></HBox>
+               </children>
+            </VBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
