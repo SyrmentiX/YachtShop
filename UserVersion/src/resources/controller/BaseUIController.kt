@@ -1,16 +1,19 @@
 package resources.controller
 
+import com.jfoenix.controls.JFXButton
 import javafx.fxml.FXML
 import javafx.geometry.Insets
 import javafx.scene.Scene
 import javafx.scene.control.Button
-import javafx.scene.image.Image
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
+import javafx.scene.text.Font
 import javafx.stage.Stage
 import resources.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.awt.Desktop
+import java.net.URI
+import java.net.URL
+
 
 class BaseUIController : Base() {
     @FXML
@@ -235,6 +238,39 @@ class BaseUIController : Base() {
                 loadLoginMenu()
             } else {
                 displayPane.children.clear()
+                val vBox = VBox()
+
+
+                val telegaButton = object : JFXButton() {
+                    init {
+                        id = "telegaButton"
+                        prefWidth = 350.0
+                        prefHeight = 50.0
+                        text = "Telegram Chat"
+                        font = Font.font("Comic Sans MS", 30.0)
+                        VBox.setMargin(this, Insets(200.0, 215.0, 0.0, 215.0))
+
+                    }
+                }
+                telegaButton.setOnAction{
+                    Desktop.getDesktop().browse(URI("https://t.me/world_yachts"))
+                }
+
+                val botButton = object : JFXButton() {
+                    init {
+                        id = "telegaButton"
+                        prefWidth = 350.0
+                        prefHeight = 50.0
+                        text = "Обратная связь"
+                        font = Font.font("Comic Sans MS", 30.0)
+                        VBox.setMargin(this, Insets(20.0, 215.0, 20.0, 215.0))
+                    }
+                }
+                botButton.setOnAction {
+                    Desktop.getDesktop().browse((URI("https://t.me/worldyacht_bot?ask")))
+                }
+                vBox.children.addAll(telegaButton,botButton)
+                displayPane.children.add(vBox)
             }
         }
     }

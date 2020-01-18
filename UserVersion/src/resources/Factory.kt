@@ -1,5 +1,8 @@
 package resources
 
+import com.jfoenix.controls.*
+import com.jfoenix.controls.JFXButton
+import com.sun.javafx.*
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.geometry.Insets
@@ -148,11 +151,14 @@ class Factory {
                         setMargin(this, Insets(5.0, 0.0, 0.0, 15.0))
                     }
                 }
-                val bucketButton = object : Button() {
+                val bucketButton = object : JFXButton() {
                     init {
                         id = "buyButton"
                         prefWidth = 350.0
                         prefHeight = 50.0
+                        style = "-jfx-button-type: RAISED;" +
+                                "     -fx-background-color: #4da6ff;" +
+                                "     -fx-text-fill: white;"
                         text = "Оформить Заказ"
                         font = Font.font("Comic Sans MS", 30.0)
                         setMargin(this, Insets(30.0, 215.0, 20.0, 215.0))
