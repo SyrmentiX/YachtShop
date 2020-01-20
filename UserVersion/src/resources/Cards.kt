@@ -3,6 +3,10 @@ import com.jfoenix.controls.JFXButton
 import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import resources.database.AccessoryId
+import resources.database.Auth
+import resources.database.Customers
+import resources.database.DocumentName
 import java.time.format.DateTimeFormatter
 
 val fabric : Factory = Factory()

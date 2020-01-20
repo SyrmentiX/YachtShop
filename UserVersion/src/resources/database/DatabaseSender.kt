@@ -1,10 +1,10 @@
-package resources
+package resources.database
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.net.URL
 
-class Sender {
+class DatabaseSender {
     companion object {
         fun send(tables: Tables, id : Int? = null) : String {
             return try {

@@ -8,6 +8,9 @@ import javafx.scene.control.*
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.scene.text.Font
+import resources.database.AccessoryId
+import resources.database.DatabaseGetter
+import resources.database.DocumentName
 import java.awt.Desktop
 import java.net.URI
 

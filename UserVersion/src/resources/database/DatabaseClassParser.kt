@@ -1,4 +1,6 @@
-package resources
+package resources.database
+
+import resources.Yacht
 
 class DatabaseClassParser {
     fun createUserOrder(yacht: Yacht, user : Customers) : Orders {

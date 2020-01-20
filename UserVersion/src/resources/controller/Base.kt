@@ -3,6 +3,10 @@ package resources.controller
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import resources.*
+import resources.database.Customers
+import resources.database.DatabaseClassParser
+import resources.database.DatabaseGetter
+import resources.database.DatabaseSender
 
 const val nonExitedUserError = "Пользователь несуществует"
 
@@ -12,7 +16,7 @@ open class Base {
     var isGuest = true
     var user : Customers = Customers()
     val databaseGetter = DatabaseGetter()
-    val sender = Sender()
+    val sender = DatabaseSender()
     val databaseClassParser = DatabaseClassParser()
 
     init {

@@ -1,6 +1,9 @@
 package resources
 
 import javafx.scene.image.Image
+import resources.database.AccessoryId
+import resources.database.Boat
+import resources.database.DatabaseGetter
 
 data class Yacht(val boat: Boat) {
     var name = boat.model
