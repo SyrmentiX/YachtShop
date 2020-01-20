@@ -1,4 +1,5 @@
 package resources
+import com.jfoenix.controls.JFXButton
 import javafx.scene.control.*
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
@@ -118,42 +119,43 @@ class RegisterCard {
     }
 
     private fun getBirthDate() : String {
-        if (((card.children[5] as HBox).children[0] as DatePicker).value == null) {
+        val datePicker = ((card.children[6] as HBox).children[0] as DatePicker)
+        if (datePicker.value == null) {
             return ""
         }
-        return ((card.children[5] as HBox).children[0] as DatePicker).value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+        return datePicker.value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
     }
 
     private fun getPhone() : String {
-        return ((card.children[5] as HBox).children[1] as TextField).text
+        return ((card.children[6] as HBox).children[1] as TextField).text
     }
 
     private fun getAddress() : String {
-        return (card.children[6] as TextField).text
-    }
-
-    private fun getCity() : String {
         return (card.children[7] as TextField).text
     }
 
+    private fun getCity() : String {
+        return (card.children[8] as TextField).text
+    }
+
     private fun getDocumentType() : DocumentName {
-        return (card.children[8] as ChoiceBox<*>).value as DocumentName
+        return (card.children[9] as ChoiceBox<*>).value as DocumentName
     }
 
     private fun getDocumentSeries() : String {
-        return (card.children[9] as TextField).text
+        return (card.children[10] as TextField).text
     }
 
     fun getCancelButton() : Button {
-        return ((card.children[10] as HBox).children[0] as Button)
+        return ((card.children[11] as HBox).children[0] as Button)
     }
 
     fun getRegisterButton() : Button {
-        return ((card.children[10] as HBox).children[1] as Button)
+        return ((card.children[11] as HBox).children[1] as Button)
     }
 
     fun setErrorText(text : String) {
-        (card.children[11] as Label).text = text
+        (card.children[12] as Label).text = text
     }
 
     fun getCustomerFromInputData() : Customers {
@@ -209,5 +211,17 @@ class RegisterCard {
             return documentError
         }
         return ""
+    }
+}
+
+class CommunicationCard {
+    val card = fabric.getCommunicationCard()
+}
+
+class UpdateCard {
+    val card = fabric.getUpdateOrderCard()
+
+    fun getUpdateButton() : JFXButton {
+        return card.children[0] as JFXButton
     }
 }

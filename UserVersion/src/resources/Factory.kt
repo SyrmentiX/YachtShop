@@ -1,18 +1,15 @@
 package resources
 
-import com.jfoenix.controls.*
 import com.jfoenix.controls.JFXButton
-import com.sun.javafx.*
 import javafx.collections.FXCollections
-import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
-import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
 import javafx.scene.text.Font
-import java.util.function.DoubleConsumer
+import java.awt.Desktop
+import java.net.URI
 
 class Factory {
     fun getYachtCard(yacht: Yacht): VBox {
@@ -65,10 +62,10 @@ class Factory {
                                 setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
                             }
                         }
-                        val desctiptionIcon = ImageView(GlobalVar.getIconDescription())
-                        desctiptionIcon.fitHeight = 25.0
-                        desctiptionIcon.fitWidth = 25.0
-                        val infoButton = object : Button("", desctiptionIcon) {
+                        val descriptionIcon = ImageView(GlobalVar.getIconDescription())
+                        descriptionIcon.fitHeight = 25.0
+                        descriptionIcon.fitWidth = 25.0
+                        val infoButton = object : Button("", descriptionIcon) {
                             init {
                                 id = "descriptionButton"
                                 prefWidth = 25.0
@@ -164,6 +161,15 @@ class Factory {
                         setMargin(this, Insets(30.0, 215.0, 20.0, 215.0))
                     }
                 }
+
+                val commentPlace = object : VBox() {
+                    init {
+                        setMargin(this, Insets(5.0, 0.0,0.0,0.0))
+                        val label = Label()
+                        label.text = "Test comment"
+                        this.children.add(label)
+                    }
+                }
                 children.addAll(
                     imageCarousel,
                     yachtName,
@@ -171,7 +177,8 @@ class Factory {
                     yachtWood,
                     yachtColour,
                     yachtNumberOfRowers,
-                    bucketButton
+                    bucketButton,
+                    commentPlace
                 )
             }
         }
@@ -255,6 +262,29 @@ class Factory {
                     }
                 }
                 children.add(yachtInfo)
+            }
+        }
+    }
+
+    fun getUpdateOrderCard() : VBox {
+        return object : VBox() {
+            init {
+                width = 790.0
+                height = 100.0
+                val updateButton = object : JFXButton() {
+                    init {
+                        id = "updateButton"
+                        prefWidth = 350.0
+                        prefHeight = 50.0
+                        style = "-jfx-button-type: RAISED;" +
+                                "     -fx-background-color: #4da6ff;" +
+                                "     -fx-text-fill: white;"
+                        text = "Обновить"
+                        font = Font.font("Comic Sans MS", 30.0)
+                        setMargin(this, Insets(30.0, 215.0, 20.0, 215.0))
+                    }
+                }
+                this.children.add(updateButton)
             }
         }
     }
@@ -420,7 +450,21 @@ class Factory {
                     }
                 }
 
-                this.children.addAll(cardNameLabel, loginField, emailField, passwordField)
+                //todo backend request
+                val userTypeList = FXCollections.observableArrayList(DatabaseGetter().getAvailableDocumentTypes())
+                val userTypeBox = object : ChoiceBox<DocumentName>(userTypeList) {
+                    init {
+                        maxWidth = 400.0
+                        minWidth = 400.0
+                        maxHeight = 30.0
+                        minHeight = 30.0
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
+                        value = userTypeList.first()
+                        isVisible = false
+                    }
+                }
+
+                this.children.addAll(cardNameLabel, loginField, emailField, passwordField, userTypeBox)
 
                 val usernameBox = object : HBox() {
                     init {
@@ -500,15 +544,15 @@ class Factory {
                     }
                 }
 
-                val observableList = FXCollections.observableArrayList(DatabaseGetter().getAvailableDocumentTypes())
-                val choiceBox = object : ChoiceBox<DocumentName>(observableList) {
+                val documentList = FXCollections.observableArrayList(DatabaseGetter().getAvailableDocumentTypes())
+                val documentBox = object : ChoiceBox<DocumentName>(documentList) {
                     init {
                         maxWidth = 400.0
                         minWidth = 400.0
                         maxHeight = 30.0
                         minHeight = 30.0
                         setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
-                        value = observableList.first()
+                        value = documentList.first()
                     }
                 }
 
@@ -523,7 +567,7 @@ class Factory {
                     }
                 }
 
-                this.children.addAll(addressField, cityField, choiceBox, documentField)
+                this.children.addAll(addressField, cityField, documentBox, documentField)
 
                 val buttonBox = object : HBox() {
                     init {
@@ -671,6 +715,40 @@ class Factory {
                         this.children.addAll(totalPrice, metaInfo)
                     }
                 }
+            }
+        }
+    }
+
+    fun getCommunicationCard() : VBox {
+        return object : VBox() {
+            init {
+                val telegramButton = object : JFXButton() {
+                    init {
+                        id = "telegramButton"
+                        prefWidth = 350.0
+                        prefHeight = 50.0
+                        text = "Telegram Chat"
+                        font = Font.font("Comic Sans MS", 30.0)
+                        setMargin(this, Insets(200.0, 215.0, 0.0, 215.0))
+                    }
+                }
+                telegramButton.setOnAction{
+                    Desktop.getDesktop().browse(URI("https://t.me/world_yachts"))
+                }
+                val botButton = object : JFXButton() {
+                    init {
+                        id = "telegramButton"
+                        prefWidth = 350.0
+                        prefHeight = 50.0
+                        text = "Обратная связь"
+                        font = Font.font("Comic Sans MS", 30.0)
+                        setMargin(this, Insets(20.0, 215.0, 20.0, 215.0))
+                    }
+                }
+                botButton.setOnAction {
+                    Desktop.getDesktop().browse((URI("https://t.me/worldyacht_bot?ask")))
+                }
+                this.children.addAll(telegramButton, botButton)
             }
         }
     }

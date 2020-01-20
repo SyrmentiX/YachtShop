@@ -13,10 +13,21 @@ open class Base {
     var user : Customers = Customers()
     val databaseGetter = DatabaseGetter()
     val sender = Sender()
+    val databaseClassParser = DatabaseClassParser()
 
     init {
         user.firstName = "Kek"
         user.secondName = "Stan"
+    }
+
+    fun deleteAllNotLocalYacht() {
+        val newList : ObservableList<OrderCard> = FXCollections.observableArrayList()
+        for (card in addedYacht) {
+            if (card.yacht.isLocal) {
+                newList.add(card)
+            }
+        }
+        addedYacht = newList
     }
     //todo add some user info
 }

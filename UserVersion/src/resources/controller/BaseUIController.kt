@@ -1,19 +1,13 @@
 package resources.controller
 
-import com.jfoenix.controls.JFXButton
 import javafx.fxml.FXML
 import javafx.geometry.Insets
 import javafx.scene.Scene
 import javafx.scene.control.Button
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
-import javafx.scene.text.Font
 import javafx.stage.Stage
 import resources.*
-import java.awt.Desktop
-import java.net.URI
-import java.net.URL
-
 
 class BaseUIController : Base() {
     @FXML
@@ -31,37 +25,11 @@ class BaseUIController : Base() {
     @FXML
     lateinit var menuPane : VBox
 
+    @FXML
+    lateinit var communicationButton: Button
+
     private fun setUsername() {
         profileButton.text = user.firstName + " " + user.secondName
-    }
-
-    private fun createUserOrder(yacht: Yacht) : Orders {
-        val order = Orders()
-        order.customerId = user.customerId
-        order.deliveryAddress = user.address
-        order.city = user.city
-        order.boatId = yacht.id
-        return order
-    }
-
-    private fun createOrderContract(yacht: Yacht, orderID : Int) : Contract {
-        val contract = Contract()
-        contract.contractTotalPrice = yacht.price
-        contract.contractTotalPriceIncVat = yacht.priceWithVat
-        contract.dateDepositPayed = 1
-        contract.orderId = orderID
-        return contract
-    }
-
-    private fun createOrderDetails(yacht: Yacht, orderID: Int) : ArrayList<Details> {
-        val details : ArrayList<Details> = arrayListOf()
-        for (accessory in yacht.selectedAccessory) {
-            val detail = Details()
-            detail.accessoryId = accessory.accessoryId1
-            detail.orderId = orderID
-            details.add(detail)
-        }
-        return details
     }
 
     private fun getOrderCardWithAction(yacht: Yacht) : OrderCard {
@@ -77,12 +45,12 @@ class BaseUIController : Base() {
                 stage.close()
             }
             orderDescriptionWindow.getCheckBox().setOnAction {
-                val order = createUserOrder(orderCard.yacht)
-                val contract = createOrderContract(orderCard.yacht, order.orderId)
-                val detail = createOrderDetails(orderCard.yacht, order.orderId)
+                val order = databaseClassParser.createUserOrder(orderCard.yacht, user)
+                val contract = databaseClassParser.createOrderContract(orderCard.yacht, order.orderId)
+                val detail = databaseClassParser.createOrderDetails(orderCard.yacht, order.orderId)
                 sender.sendOrder(order, contract, detail)
                 orderDescriptionWindow.disableCheckBox()
-                orderCard.setOrderState("Оплачено")
+                orderCard.setOrderState("В обработке")
                 orderCard.yacht.isLocal = false
             }
             stage.scene = Scene(orderDescriptionWindow.getWindow())
@@ -106,7 +74,7 @@ class BaseUIController : Base() {
                     loadDirectory()
                 }
             }
-            loginCard.setErrorText( errorMessage)
+            loginCard.setErrorText(errorMessage)
         }
 
         loginCard.getRegisterButton().setOnAction {
@@ -208,6 +176,14 @@ class BaseUIController : Base() {
         for (card in addedYacht) {
             displayPane.children.add(card.card)
         }
+        val updateCard = UpdateCard()
+        updateCard.getUpdateButton().setOnAction {
+            displayPane.children.clear()
+            deleteAllNotLocalYacht()
+            isOrderLoaded = false
+            loadOrders()
+        }
+        displayPane.children.add(updateCard.card)
     }
 
     private fun loadLoginMenu() {
@@ -233,44 +209,16 @@ class BaseUIController : Base() {
             }
         }
 
+        communicationButton.setOnAction {
+            displayPane.children.clear()
+            displayPane.children.add(CommunicationCard().card)
+        }
+
         profileButton.setOnAction {
             if (isGuest) {
                 loadLoginMenu()
             } else {
                 displayPane.children.clear()
-                val vBox = VBox()
-
-
-                val telegaButton = object : JFXButton() {
-                    init {
-                        id = "telegaButton"
-                        prefWidth = 350.0
-                        prefHeight = 50.0
-                        text = "Telegram Chat"
-                        font = Font.font("Comic Sans MS", 30.0)
-                        VBox.setMargin(this, Insets(200.0, 215.0, 0.0, 215.0))
-
-                    }
-                }
-                telegaButton.setOnAction{
-                    Desktop.getDesktop().browse(URI("https://t.me/world_yachts"))
-                }
-
-                val botButton = object : JFXButton() {
-                    init {
-                        id = "telegaButton"
-                        prefWidth = 350.0
-                        prefHeight = 50.0
-                        text = "Обратная связь"
-                        font = Font.font("Comic Sans MS", 30.0)
-                        VBox.setMargin(this, Insets(20.0, 215.0, 20.0, 215.0))
-                    }
-                }
-                botButton.setOnAction {
-                    Desktop.getDesktop().browse((URI("https://t.me/worldyacht_bot?ask")))
-                }
-                vBox.children.addAll(telegaButton,botButton)
-                displayPane.children.add(vBox)
             }
         }
     }
