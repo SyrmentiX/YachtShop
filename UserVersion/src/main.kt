@@ -9,8 +9,9 @@ class YachtShop : Application() {
     override fun start(primaryStage: Stage) {
         val loader = FXMLLoader(javaClass.getResource("resources/FXML/BaseUI.fxml"))
         val root : Parent = loader.load()
-        val scene = Scene(root, 1000.0, 600.0 )
+        val scene = Scene(root, 990.0, 590.0 )
         primaryStage.scene = scene
+        primaryStage.isResizable = false
         primaryStage.show()
     }
 
