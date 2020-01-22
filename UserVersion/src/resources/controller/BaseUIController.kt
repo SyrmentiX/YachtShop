@@ -8,6 +8,8 @@ import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import javafx.stage.Stage
 import resources.*
+import resources.cards.*
+import resources.windows.*
 
 class BaseUIController : Base() {
     @FXML
@@ -21,6 +23,12 @@ class BaseUIController : Base() {
 
     @FXML
     lateinit var displayPane : FlowPane
+
+    @FXML
+    lateinit var allOrdersButton : Button
+
+    @FXML
+    lateinit var allUserButton : Button
 
     @FXML
     lateinit var menuPane : VBox
@@ -39,17 +47,27 @@ class BaseUIController : Base() {
             if (!orderCard.yacht.isLocal) {
                 orderDescriptionWindow.getCheckBox().isSelected = true
                 orderDescriptionWindow.disableCheckBox()
+                orderDescriptionWindow.hideCancelButton()
             }
             val stage = Stage()
+
             orderDescriptionWindow.getCloseButton().setOnAction {
                 stage.close()
             }
+
+            orderDescriptionWindow.getCancelButton().setOnAction {
+                addedYacht.remove(orderCard)
+                displayPane.children.remove(orderCard.card)
+                stage.close()
+            }
+
             orderDescriptionWindow.getCheckBox().setOnAction {
                 val order = databaseClassParser.createUserOrder(orderCard.yacht, user)
                 val contract = databaseClassParser.createOrderContract(orderCard.yacht, order.orderId)
                 val detail = databaseClassParser.createOrderDetails(orderCard.yacht, order.orderId)
                 sender.sendOrder(order, contract, detail)
                 orderDescriptionWindow.disableCheckBox()
+                orderDescriptionWindow.hideCancelButton()
                 orderCard.setOrderState("В обработке")
                 orderCard.yacht.isLocal = false
             }

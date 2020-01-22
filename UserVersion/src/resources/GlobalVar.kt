@@ -2,6 +2,20 @@ package resources
 
 import javafx.scene.image.Image
 
+val fabric : Factory = Factory()
+const val usernameError : String = "Введите логин"
+const val passwordError : String = "Введите пароль"
+const val dateError : String = "Введите дату"
+const val emailError : String = "Введите почту"
+const val firstNameError : String = "Введите имя"
+const val secondNameError : String = "Введите фамилию"
+const val phoneError : String = "Введите номер телефона"
+const val addressError : String = "Введите адрес"
+const val cityError : String = "Введите город"
+const val documentError : String = "Введите номер и серию документа"
+const val beginSentence = "Цена: "
+const val endSentence = " руб."
+
 class GlobalVar {
     companion object {
         private var imageMap : MutableMap<Int, ArrayList<Image>> = mutableMapOf()

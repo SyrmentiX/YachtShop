@@ -212,7 +212,6 @@ class Factory {
                             }
                         }
 
-
                         val centerArea = object : VBox() {
                             init {
                                 prefWidth = 490.0
@@ -247,7 +246,6 @@ class Factory {
                                         prefWidth = 150.0
                                         prefHeight = 60.0
                                         alignment = Pos.CENTER
-                                        text = "None"
                                     }
                                 }
                                 val detailsButton = object : Button() {
@@ -453,21 +451,7 @@ class Factory {
                     }
                 }
 
-                //todo backend request
-                val userTypeList = FXCollections.observableArrayList(DatabaseGetter().getAvailableDocumentTypes())
-                val userTypeBox = object : ChoiceBox<DocumentName>(userTypeList) {
-                    init {
-                        maxWidth = 400.0
-                        minWidth = 400.0
-                        maxHeight = 30.0
-                        minHeight = 30.0
-                        setMargin(this, Insets(20.0, 0.0, 0.0, 200.0))
-                        value = userTypeList.first()
-                        isVisible = false
-                    }
-                }
-
-                this.children.addAll(cardNameLabel, loginField, emailField, passwordField, userTypeBox)
+                this.children.addAll(cardNameLabel, loginField, emailField, passwordField)
 
                 val usernameBox = object : HBox() {
                     init {
@@ -698,9 +682,18 @@ class Factory {
                                 val payCheck = object : CheckBox() {
                                     init {
                                         text = "Оплата"
-                                        prefWidth = 215.0
+                                        prefWidth = 135.0
                                         prefHeight = 40.0
                                         setMargin(this, Insets(5.0, 0.0, 0.0, 5.0))
+                                    }
+                                }
+
+                                val cancelButton = object : Button() {
+                                    init {
+                                        text = "Отменить"
+                                        prefWidth = 70.0
+                                        prefHeight = 20.0
+                                        setMargin(this, Insets(10.0, 5.0, 0.0, 5.0))
                                     }
                                 }
 
@@ -712,7 +705,7 @@ class Factory {
                                         setMargin(this, Insets(10.0, 0.0, 0.0, 0.0))
                                     }
                                 }
-                                this.children.addAll(payCheck, closeButton)
+                                this.children.addAll(payCheck,cancelButton, closeButton)
                             }
                         }
                         this.children.addAll(totalPrice, metaInfo)
