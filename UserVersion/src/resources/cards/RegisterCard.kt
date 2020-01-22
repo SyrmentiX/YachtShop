@@ -32,7 +32,7 @@ class RegisterCard {
     }
 
     private fun getBirthDate() : String {
-        val datePicker = ((card.children[6] as HBox).children[0] as DatePicker)
+        val datePicker = ((card.children[5] as HBox).children[0] as DatePicker)
         if (datePicker.value == null) {
             return ""
         }
@@ -40,35 +40,35 @@ class RegisterCard {
     }
 
     private fun getPhone() : String {
-        return ((card.children[6] as HBox).children[1] as TextField).text
+        return ((card.children[5] as HBox).children[1] as TextField).text
     }
 
     private fun getAddress() : String {
-        return (card.children[7] as TextField).text
+        return (card.children[6] as TextField).text
     }
 
     private fun getCity() : String {
-        return (card.children[8] as TextField).text
+        return (card.children[7] as TextField).text
     }
 
     private fun getDocumentType() : DocumentName {
-        return (card.children[9] as ChoiceBox<*>).value as DocumentName
+        return (card.children[8] as ChoiceBox<*>).value as DocumentName
     }
 
     private fun getDocumentSeries() : String {
-        return (card.children[10] as TextField).text
+        return (card.children[9] as TextField).text
     }
 
     fun getCancelButton() : Button {
-        return ((card.children[11] as HBox).children[0] as Button)
+        return ((card.children[10] as HBox).children[0] as Button)
     }
 
     fun getRegisterButton() : Button {
-        return ((card.children[11] as HBox).children[1] as Button)
+        return ((card.children[10] as HBox).children[1] as Button)
     }
 
     fun setErrorText(text : String) {
-        (card.children[12] as Label).text = text
+        (card.children[11] as Label).text = text
     }
 
     fun getCustomerFromInputData() : Customers {

@@ -15,6 +15,10 @@ const val cityError : String = "Введите город"
 const val documentError : String = "Введите номер и серию документа"
 const val beginSentence = "Цена: "
 const val endSentence = " руб."
+const val commonUser = 1
+const val adminUser = 2
+const val moderUser = 3
+
 
 class GlobalVar {
     companion object {

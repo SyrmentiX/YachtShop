@@ -36,6 +36,15 @@ class BaseUIController : Base() {
     @FXML
     lateinit var communicationButton: Button
 
+    private fun activateAbility() {
+        val auth = databaseGetter.getAuthFromCustomerId(user.customerId)
+        if (auth.userType == adminUser) {
+            showAdminButton()
+        } else if (auth.userType == moderUser) {
+            showModerButton()
+        }
+    }
+
     private fun setUsername() {
         profileButton.text = user.firstName + " " + user.secondName
     }
@@ -86,9 +95,9 @@ class BaseUIController : Base() {
                 if (userID == -1) {
                     errorMessage = nonExitedUserError
                 } else {
-                    user = databaseGetter.getUserById(userID)
+                    loadUser(userID)
                     setUsername()
-                    isGuest = false
+                    activateAbility()
                     loadDirectory()
                 }
             }
@@ -108,6 +117,8 @@ class BaseUIController : Base() {
                     val auth = registerCard.getAuthFromInputData()
                     val customer = registerCard.getCustomerFromInputData()
                     sender.registration(auth, customer)
+                    displayPane.children.clear()
+                    loadLoginMenu()
                 }
                 registerCard.setErrorText(errorMessages)
             }
@@ -209,11 +220,28 @@ class BaseUIController : Base() {
         displayPane.children.add(getLoginCardWithAction().card)
     }
 
+    private fun showModerButton() {
+        allOrdersButton.isVisible = true
+        allOrdersButton.isDisable = false
+    }
+
+    private fun showAdminButton() {
+        allOrdersButton.isVisible = true
+        allUserButton.isVisible = true
+        allOrdersButton.isDisable = false
+        allUserButton.isDisable = false
+    }
+
     fun initialize() {
         profileButton.background = Background(BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY))
         menuPane.background = Background(BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY))
+        allOrdersButton.isVisible = false
+        allUserButton.isVisible = false
+        allOrdersButton.isDisable = true
+        allUserButton.isDisable = true
         setUsername()
         loadLoginMenu()
+
 
         directoryButton.setOnAction {
             loadDirectory()
@@ -239,5 +267,14 @@ class BaseUIController : Base() {
                 displayPane.children.clear()
             }
         }
+
+        allUserButton.setOnAction {
+
+        }
+
+        allOrdersButton.setOnAction {
+
+        }
+
     }
 }

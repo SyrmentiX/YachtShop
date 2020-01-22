@@ -159,4 +159,15 @@ class DatabaseGetter {
         }
         return customerWithAuth
     }
+
+    fun getAuthFromCustomerId(customersID: Int) : Auth {
+        val authJson = DatabaseSender.send(Tables.auth)
+        val authList = Gson().fromJson<ArrayList<Auth>>(authJson, object : TypeToken<List<Auth>>() {}.type)
+        for (auth in authList) {
+            if (auth.customerId == customersID) {
+                return auth
+            }
+        }
+        return Auth()
+    }
 }

@@ -34,5 +34,10 @@ open class Base {
         }
         addedYacht = newList
     }
+
+    fun loadUser(userID : Int) {
+        user = databaseGetter.getUserById(userID)
+        isGuest = false
+    }
     //todo add some user info
 }

@@ -48,7 +48,6 @@ class DatabaseSender {
         map["contract"] = contract
         map["details"] = details
 
-        println(Gson().toJson(map))
         val url = "https://yaht.azurewebsites.net/Orders/Set?json=${Gson().toJson(map)}".replace(' ', '_')
         URL(url).openStream().bufferedReader().use{ it.readText() }
     }
