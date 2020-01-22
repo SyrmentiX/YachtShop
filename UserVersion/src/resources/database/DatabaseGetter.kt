@@ -2,6 +2,7 @@ package resources.database
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.sun.corba.se.pept.transport.ContactInfo
 import java.net.URL
 
 class DatabaseGetter {
@@ -122,4 +123,40 @@ class DatabaseGetter {
         return wood.wood1
     }
 
+    fun getAllOrdersWithContract() : ArrayList<Pair<Orders, Contract>> {
+        val contractJson = DatabaseSender.send(Tables.contract)
+        val ordersJson = DatabaseSender.send(Tables.order)
+        val contractList = Gson().fromJson<ArrayList<Contract>>(contractJson, object : TypeToken<List<Contract>>() {}.type)
+        val ordersList = Gson().fromJson<ArrayList<Orders>>(ordersJson, object : TypeToken<List<Orders>>() {}.type)
+
+        val ordersWithCustomers : ArrayList<Pair<Orders, Contract>> = arrayListOf()
+        for (order in ordersList) {
+            for (contract in contractList) {
+                if (order.orderId == contract.orderId) {
+                    ordersWithCustomers.add(Pair(order, contract))
+                    break
+                }
+            }
+        }
+        return ordersWithCustomers
+    }
+
+    fun getAllCustomerWithAuth() : ArrayList<Pair<Customers, Auth>> {
+        val customersJson = DatabaseSender.send(Tables.customers)
+        val authJson = DatabaseSender.send(Tables.auth)
+
+        val customersList = Gson().fromJson<ArrayList<Customers>>(customersJson, object : TypeToken<List<Customers>>() {}.type)
+        val authList = Gson().fromJson<ArrayList<Auth>>(authJson, object : TypeToken<List<Auth>>() {}.type)
+
+        val customerWithAuth : ArrayList<Pair<Customers, Auth>> = arrayListOf()
+        for (customer in customersList) {
+            for (auth in authList) {
+                if (auth.customerId == customer.customerId) {
+                    customerWithAuth.add(Pair(customer, auth))
+                    break
+                }
+            }
+        }
+        return customerWithAuth
+    }
 }
