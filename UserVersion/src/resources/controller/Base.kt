@@ -2,6 +2,7 @@ package resources.controller
 
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
+import javafx.stage.Stage
 import resources.*
 import resources.cards.OrderCard
 import resources.database.Customers
@@ -15,10 +16,12 @@ open class Base {
     var addedYacht : ObservableList<OrderCard> = FXCollections.observableArrayList()
     var isOrderLoaded : Boolean = false
     var isGuest = true
+    var isSubWindowShow = false
     var user : Customers = Customers()
     val databaseGetter = DatabaseGetter()
     val sender = DatabaseSender()
     val databaseClassParser = DatabaseClassParser()
+    val stage : Stage = Stage()
 
     init {
         user.firstName = "Kek"

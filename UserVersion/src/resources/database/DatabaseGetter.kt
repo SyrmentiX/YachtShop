@@ -123,6 +123,11 @@ class DatabaseGetter {
         return wood.wood1
     }
 
+    fun getCustomerFromOrder(orders: Orders) : Customers {
+        val customerJson = DatabaseSender.send(Tables.customers, orders.customerId)
+        return Gson().fromJson<Customers>(customerJson, Customers::class.java)
+    }
+
     fun getAllOrdersWithContract() : ArrayList<Pair<Orders, Contract>> {
         val contractJson = DatabaseSender.send(Tables.contract)
         val ordersJson = DatabaseSender.send(Tables.order)
@@ -169,5 +174,10 @@ class DatabaseGetter {
             }
         }
         return Auth()
+    }
+
+    fun getProductionProgress() : ArrayList<ProductionProcess> {
+        val productionProcessJson = DatabaseSender.send(Tables.productionProcess)
+        return Gson().fromJson<ArrayList<ProductionProcess>>(productionProcessJson, object : TypeToken<List<ProductionProcess>>() {}.type)
     }
 }

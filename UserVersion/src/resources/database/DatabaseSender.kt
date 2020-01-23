@@ -51,4 +51,34 @@ class DatabaseSender {
         val url = "https://yaht.azurewebsites.net/Orders/Set?json=${Gson().toJson(map)}".replace(' ', '_')
         URL(url).openStream().bufferedReader().use{ it.readText() }
     }
+
+    fun editCustomer(customer: Customers) {
+        val url = "https://yaht.azurewebsites.net/Customers/AppEdit?json=${Gson().toJson(customer)}".replace(' ', '_')
+        URL(url).openStream().bufferedReader().use{ it.readText() }
+    }
+
+    fun editProductionProcess(idContract: Int, idProductionProcess: Int) {
+        val url = "https://yaht.azurewebsites.net/Contracts/SetProductionProcess?idContract=$idContract&idProductionProcess=$idProductionProcess"
+        URL(url).openStream().bufferedReader().use{ it.readText() }
+    }
+
+    fun deleteCustomer(customerId: Int) {
+        val url = "https://yaht.azurewebsites.net/Customers/AppDelete?customerId=$customerId"
+        URL(url).openStream().bufferedReader().use{ it.readText() }
+    }
+
+    fun deleteOrder(orderID: Int) {
+        val url = "https://yaht.azurewebsites.net/Orders/Delete?orderId=$orderID"
+        URL(url).openStream().bufferedReader().use{ it.readText() }
+    }
+
+    fun sendComment(coments: Coments) {
+        val url = "https://yaht.azurewebsites.net/Coments/AppCreate?json=${Gson().toJson(coments)}"
+        URL(url).openStream().bufferedReader().use{ it.readText() }
+    }
+
+    fun deleteComment(comentID : Int) {
+        val url = "https://yaht.azurewebsites.net/Coments/AppDelete?comentId=$comentID"
+        URL(url).openStream().bufferedReader().use{ it.readText() }
+    }
 }

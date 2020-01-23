@@ -7,9 +7,14 @@ import javafx.scene.control.Button
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import javafx.stage.Stage
-import resources.*
+import resources.Yacht
+import resources.adminUser
 import resources.cards.*
-import resources.windows.*
+import resources.database.DatabaseSender
+import resources.moderUser
+import resources.windows.BuyWindow
+import resources.windows.ModerProductionProgressWindow
+import resources.windows.OrderDescriptionWindow
 
 class BaseUIController : Base() {
     @FXML
@@ -52,36 +57,41 @@ class BaseUIController : Base() {
     private fun getOrderCardWithAction(yacht: Yacht) : OrderCard {
         val orderCard = OrderCard(yacht)
         orderCard.getInfoButton().setOnAction {
-            val orderDescriptionWindow = OrderDescriptionWindow(orderCard.yacht)
-            if (!orderCard.yacht.isLocal) {
-                orderDescriptionWindow.getCheckBox().isSelected = true
-                orderDescriptionWindow.disableCheckBox()
-                orderDescriptionWindow.hideCancelButton()
-            }
-            val stage = Stage()
+            if (!isSubWindowShow) {
+                val orderDescriptionWindow = OrderDescriptionWindow(orderCard.yacht)
+                isSubWindowShow = true
+                stage.setOnCloseRequest { isSubWindowShow = false }
+                if (!orderCard.yacht.isLocal) {
+                    orderDescriptionWindow.getCheckBox().isSelected = true
+                    orderDescriptionWindow.disableCheckBox()
+                    orderDescriptionWindow.hideCancelButton()
+                }
 
-            orderDescriptionWindow.getCloseButton().setOnAction {
-                stage.close()
-            }
+                orderDescriptionWindow.getCloseButton().setOnAction {
+                    stage.close()
+                }
 
-            orderDescriptionWindow.getCancelButton().setOnAction {
-                addedYacht.remove(orderCard)
-                displayPane.children.remove(orderCard.card)
-                stage.close()
-            }
+                orderDescriptionWindow.getCancelButton().setOnAction {
+                    addedYacht.remove(orderCard)
+                    displayPane.children.remove(orderCard.card)
+                    stage.close()
+                }
 
-            orderDescriptionWindow.getCheckBox().setOnAction {
-                val order = databaseClassParser.createUserOrder(orderCard.yacht, user)
-                val contract = databaseClassParser.createOrderContract(orderCard.yacht, order.orderId)
-                val detail = databaseClassParser.createOrderDetails(orderCard.yacht, order.orderId)
-                sender.sendOrder(order, contract, detail)
-                orderDescriptionWindow.disableCheckBox()
-                orderDescriptionWindow.hideCancelButton()
-                orderCard.setOrderState("В обработке")
-                orderCard.yacht.isLocal = false
+                orderDescriptionWindow.getCheckBox().setOnAction {
+                    val order = databaseClassParser.createUserOrder(orderCard.yacht, user)
+                    val contract = databaseClassParser.createOrderContract(orderCard.yacht, order.orderId)
+                    val detail = databaseClassParser.createOrderDetails(orderCard.yacht, order.orderId)
+                    sender.sendOrder(order, contract, detail)
+                    orderDescriptionWindow.disableCheckBox()
+                    orderDescriptionWindow.hideCancelButton()
+                    orderCard.setOrderState("В обработке")
+                    orderCard.yacht.isLocal = false
+                }
+                stage.scene = Scene(orderDescriptionWindow.getWindow())
+                stage.showAndWait()
+            } else {
+                stage.toFront()
             }
-            stage.scene = Scene(orderDescriptionWindow.getWindow())
-            stage.showAndWait()
         }
         return orderCard
     }
@@ -134,23 +144,29 @@ class BaseUIController : Base() {
             val yachtCard = YachtCard(yacht)
 
             fun getBuyWindow(){
-                val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
-                val stage = Stage()
-                buyWindow.getBuyButton().setOnAction {
-                    val vat = databaseGetter.getVat(yacht.vat)
-                    val orderedYacht : Yacht = buyWindow.getYacht().copy()
-                    orderedYacht.selectedAccessory = buyWindow.getSelectedAccessory()
-                    orderedYacht.addPriceFromAccessory()
-                    orderedYacht.priceWithVat += (orderedYacht.price * vat.vat1).toInt()
-                    val orderCard = getOrderCardWithAction(orderedYacht)
-                    orderCard.setOrderState("Ожидает оплаты")
-                    addedYacht.add(orderCard)
-                    buyWindow.resetPrice()
-                    stage.close()
+                if (!isSubWindowShow) {
+                    val buyWindow = BuyWindow(databaseGetter.getAccessoryByBoatId(yacht.id), yacht)
+                    isSubWindowShow = true
+                    stage.setOnCloseRequest { isSubWindowShow = false }
+                    buyWindow.getBuyButton().setOnAction {
+                        isSubWindowShow = true
+                        val vat = databaseGetter.getVat(yacht.vat)
+                        val orderedYacht: Yacht = buyWindow.getYacht().copy()
+                        orderedYacht.selectedAccessory = buyWindow.getSelectedAccessory()
+                        orderedYacht.addPriceFromAccessory()
+                        orderedYacht.priceWithVat += (orderedYacht.price * vat.vat1).toInt()
+                        val orderCard = getOrderCardWithAction(orderedYacht)
+                        orderCard.setOrderState("Ожидает оплаты")
+                        addedYacht.add(orderCard)
+                        buyWindow.resetPrice()
+                        stage.close()
+                    }
+                    val scene = Scene(buyWindow.getWindow())
+                    stage.scene = scene
+                    stage.showAndWait()
+                } else {
+                    stage.toFront()
                 }
-                val scene = Scene(buyWindow.getWindow())
-                stage.scene = scene
-                stage.showAndWait()
             }
 
             yachtCard.getBuyButton().setOnAction {
@@ -242,7 +258,6 @@ class BaseUIController : Base() {
         setUsername()
         loadLoginMenu()
 
-
         directoryButton.setOnAction {
             loadDirectory()
         }
@@ -268,13 +283,51 @@ class BaseUIController : Base() {
             }
         }
 
-        allUserButton.setOnAction {
-
-        }
-
         allOrdersButton.setOnAction {
-
+            displayPane.children.clear()
+            val ordersWithContact = databaseGetter.getAllOrdersWithContract()
+            for (order in ordersWithContact) {
+                val card = ModerOrderCard(order.first, order.second)
+                card.getEditButton().setOnAction {
+                    if (!isSubWindowShow) {
+                        isSubWindowShow = true
+                        val moderProductionProgressWindow =
+                            ModerProductionProgressWindow(databaseGetter.getOrderProductionProgress(card.contract.productionProcess))
+                        stage.setOnCloseRequest { isSubWindowShow = false }
+                        moderProductionProgressWindow.getSaveButton().setOnAction {
+                            val newProductionProcess = moderProductionProgressWindow.getProductionProgress()
+                            card.changeProductionProgress(newProductionProcess)
+                            DatabaseSender().editProductionProcess(
+                                card.contract.contractId,
+                                newProductionProcess.productionProcessId
+                            )
+                        }
+                        val scene = Scene(moderProductionProgressWindow.getWindow())
+                        stage.scene = scene
+                        stage.showAndWait()
+                    } else {
+                        stage.toFront()
+                    }
+                }
+                card.getDeleteButton().setOnAction {
+                    displayPane.children.remove(card.card)
+                    DatabaseSender().deleteOrder(order.first.orderId)
+                }
+                displayPane.children.add(card.card)
+            }
         }
 
+        allUserButton.setOnAction {
+            displayPane.children.clear()
+            val users = databaseGetter.getAllCustomerWithAuth()
+            for (user in users) {
+                val card = UserCard(user)
+                card.getDeleteButton().setOnAction {
+                    displayPane.children.remove(card.card)
+                    DatabaseSender().deleteCustomer(card.getCustomerID())
+                }
+                displayPane.children.add(card.card)
+            }
+        }
     }
 }

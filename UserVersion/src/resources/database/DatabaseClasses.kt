@@ -18,7 +18,8 @@ enum class Tables(val tableName : String) {
     salesPerson("SalesPerson"), // Тот кто продал лодку.
     vat("Vat"), // НДС.
     wood("Wood"), // Дерево в виде строки.
-    order("Orders") // Дерево в виде строки.
+    order("Orders"), // Дерево в виде строки.
+    coments("Coments")
 }
 
 class AccessoryId
@@ -138,6 +139,10 @@ class ProductionProcess
 {
     var productionProcessId = 0
     var productionProcess1 = ""
+
+    override fun toString(): String {
+        return productionProcess1
+    }
 }
 
 class SalesPerson
@@ -157,4 +162,12 @@ class Wood
 {
     var woodId = 0
     var wood1 = ""
+}
+
+class Coments
+{
+    var coment_id = 0
+    var boat_id = 0
+    var customer_id = 0
+    var coment = ""
 }

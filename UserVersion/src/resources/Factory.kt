@@ -7,12 +7,12 @@ import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
+import javafx.scene.paint.Color
 import javafx.scene.text.Font
-import resources.database.AccessoryId
-import resources.database.DatabaseGetter
-import resources.database.DocumentName
+import resources.database.*
 import java.awt.Desktop
 import java.net.URI
+
 
 class Factory {
     fun getYachtCard(yacht: Yacht): VBox {
@@ -192,6 +192,22 @@ class Factory {
             init {
                 width = 790.0
                 height = 100.0
+                prefWidth = 786.0
+                prefHeight = 150.0
+                border = Border(BorderStroke(
+                    Color.RED,
+                    Color.RED,
+                    Color.BLACK,
+                    Color.RED,
+                    BorderStrokeStyle.NONE,
+                    BorderStrokeStyle.NONE,
+                    BorderStrokeStyle.SOLID,
+                    BorderStrokeStyle.NONE,
+                    CornerRadii.EMPTY,
+                    BorderWidths(2.0),
+                    Insets.EMPTY
+                )
+                )
                 val yachtInfo = object : HBox() {
                     init {
                         prefWidth = 790.0
@@ -745,6 +761,268 @@ class Factory {
                     Desktop.getDesktop().browse((URI("https://t.me/worldyacht_bot?ask")))
                 }
                 this.children.addAll(telegramButton, botButton)
+            }
+        }
+    }
+
+    fun getModerOrderCard(orders: Orders, contract: Contract) : VBox {
+        return object : VBox() {
+            init {
+                prefWidth = 786.0
+                prefHeight = 150.0
+                spacing = 0.0
+                border = Border(BorderStroke(
+                            Color.RED,
+                            Color.RED,
+                            Color.BLACK,
+                            Color.RED,
+                            BorderStrokeStyle.NONE,
+                            BorderStrokeStyle.NONE,
+                            BorderStrokeStyle.SOLID,
+                            BorderStrokeStyle.NONE,
+                            CornerRadii.EMPTY,
+                            BorderWidths(2.0),
+                            Insets.EMPTY
+                        )
+                    )
+                val orderInfo = object : HBox() {
+                    init {
+                        prefWidth = 790.0
+                        prefHeight= 50.0
+                        val yachtName = object : Label() {
+                            init {
+                                prefWidth = 266.0
+                                prefHeight = 50.0
+                                text = "Лодка: " +  DatabaseGetter().getBoatById(orders.boatId).model
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val contractPrice = object : Label() {
+                            init {
+                                prefWidth = 260.0
+                                prefHeight = 50.0
+                                text = "Цена: " +  contract.contractTotalPriceIncVat.toString() + endSentence
+                                alignment = Pos.CENTER
+                            }
+                        }
+
+                        val productionProgressLabel = object : Label() {
+                            init {
+                                prefWidth = 260.0
+                                prefHeight = 50.0
+                                alignment = Pos.CENTER
+                                text = "Состояние: " +  DatabaseGetter().getOrderProductionProgress(contract.productionProcess).productionProcess1
+                            }
+                        }
+
+                        this.children.addAll(yachtName, contractPrice, productionProgressLabel)
+                    }
+                }
+
+                val userInfo = object : HBox() {
+                    init {
+                        prefWidth = 786.0
+                        prefHeight= 50.0
+                        val customer = DatabaseGetter().getCustomerFromOrder(orders)
+                        val usernameLabel = object : Label() {
+                            init {
+                                prefWidth = 256.0
+                                prefHeight = 50.0
+                                text = "Заказчик: " + customer.firstName + " " + customer.secondName
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val cityLabel = object : Label() {
+                            init {
+                                prefHeight = 50.0
+                                prefWidth = 160.0
+                                text = "Город: " + orders.city
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val addressLabel = object : Label() {
+                            init {
+                                prefWidth = 250.0
+                                prefHeight = 50.0
+                                text = "Адресс: " +  orders.deliveryAddress
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val dateOrderLabel = object : Label() {
+                            init {
+                                prefWidth = 120.0
+                                prefHeight = 50.0
+                                text = "Дата: " + orders.date.subSequence(0, 10)
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        this.children.addAll(usernameLabel, cityLabel, addressLabel, dateOrderLabel)
+                    }
+                }
+
+                val buttonBox = object : HBox() {
+                    init {
+                        prefWidth = 786.0
+                        prefHeight = 50.0
+                        val editButton = object : Button() {
+                            init {
+                                prefWidth = 100.0
+                                prefHeight = 20.0
+                                setMargin(this, Insets(10.0, 0.0, 0.0, 293.0))
+                                text = "Редактировать"
+                            }
+                        }
+                        val deleteButton = object : Button() {
+                            init {
+                                prefWidth = 100.0
+                                prefHeight = 20.0
+                                setMargin(this, Insets(10.0, 0.0, 0.0, 10.0))
+                                text = "Удалить"
+                            }
+                        }
+                        this.children.addAll(editButton, deleteButton)
+                    }
+                }
+                this.children.addAll(orderInfo, userInfo, buttonBox)
+            }
+        }
+    }
+
+    fun getModerProductionProgressWindow(productionProcess: ProductionProcess) : VBox {
+        return object : VBox() {
+            init {
+                prefWidth = 200.0
+                prefHeight = 90.0
+                val productionProgressList = FXCollections.observableArrayList(DatabaseGetter().getProductionProgress())
+                val productionProgress = object : ChoiceBox<ProductionProcess>(productionProgressList) {
+                    init {
+                        prefWidth = 200.0
+                        prefHeight = 20.0
+                        alignment = Pos.CENTER
+                        setMargin(this, Insets(10.0, 0.0, 0.0, 0.0))
+                        value = productionProgressList[productionProcess.productionProcessId - 1]
+                    }
+                }
+
+                val saveButton = object : Button() {
+                    init {
+                        text = "Сохранить"
+                        prefWidth = 100.0
+                        prefHeight = 20.0
+                        setMargin(this, Insets(20.0, 0.0, 0.0, 10.0))
+                    }
+                }
+                this.children.addAll(productionProgress, saveButton)
+            }
+        }
+    }
+
+    fun getUserCard(customers: Customers, auth: Auth) : VBox {
+        return object : VBox() {
+            init {
+                prefWidth = 800.0
+                prefHeight = 150.0
+                border = Border(BorderStroke(
+                    Color.RED,
+                    Color.RED,
+                    Color.BLACK,
+                    Color.RED,
+                    BorderStrokeStyle.NONE,
+                    BorderStrokeStyle.NONE,
+                    BorderStrokeStyle.SOLID,
+                    BorderStrokeStyle.NONE,
+                    CornerRadii.EMPTY,
+                    BorderWidths(2.0),
+                    Insets.EMPTY
+                )
+                )
+                val upperUserInfo = object : HBox() {
+                    init {
+                        prefWidth = 786.0
+                        prefHeight = 50.0
+                        val loginLabel = object : Label() {
+                            init {
+                                prefWidth = 256.0
+                                prefHeight = 50.0
+                                text = "Логин: "+ auth.username
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val firstNameLabel = object : Label() {
+                            init {
+                                prefWidth = 250.0
+                                prefHeight = 50.0
+                                text = "Имя: " + customers.firstName
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val secondNameLabel = object : Label() {
+                            init {
+                                prefWidth = 250.0
+                                prefHeight = 50.0
+                                text = "Фамилия: " + customers.secondName
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        this.children.addAll(loginLabel, firstNameLabel, secondNameLabel)
+                    }
+                }
+                val lowerUserInfo = object : HBox() {
+                    init {
+                        prefWidth = 786.0
+                        prefHeight= 50.0
+                        val phoneLabel = object : Label() {
+                            init {
+                                prefWidth = 250.0
+                                prefHeight = 50.0
+                                text = "Номер телефона: " + customers.phoneNumber
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val cityLabel = object : Label() {
+                            init {
+                                prefHeight = 50.0
+                                prefWidth = 160.0
+                                text = "Город: " + customers.city
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val addressLabel = object : Label() {
+                            init {
+                                prefWidth = 250.0
+                                prefHeight = 50.0
+                                text = "Адресс: " +  customers.address
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        val dateOrderLabel = object : Label() {
+                            init {
+                                prefWidth = 120.0
+                                prefHeight = 50.0
+                                text = "Дата: " + customers.dateOfBirth.subSequence(0, 10)
+                                alignment = Pos.CENTER
+                            }
+                        }
+                        this.children.addAll(phoneLabel, cityLabel, addressLabel, dateOrderLabel)
+                    }
+                }
+
+                val buttonBox = object : HBox() {
+                    init {
+                        prefWidth = 786.0
+                        prefHeight = 50.0
+                        val deleteButton = object : Button() {
+                            init {
+                                prefWidth = 100.0
+                                prefHeight = 20.0
+                                setMargin(this, Insets(10.0, 0.0, 0.0, 350.0))
+                                text = "Удалить"
+                            }
+                        }
+                        this.children.addAll(deleteButton)
+                    }
+                }
+                this.children.addAll(upperUserInfo, lowerUserInfo, buttonBox)
             }
         }
     }
