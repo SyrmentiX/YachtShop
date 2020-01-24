@@ -12,11 +12,13 @@ class UserLoaderAsync(private val controller : BaseUIController) : AsyncTask<Voi
     override fun onPreExecute() {
         controller.isLoading = true
         controller.displayPane.children.clear()
+        controller.addIndicator()
         println("LoadingAdminPanelStart")
     }
 
     override fun onPostExecute(userCards: ArrayList<UserCard>) {
         controller.isLoading = false
+        controller.removeIndicator()
         for (card in userCards) {
             controller.displayPane.children.add(card.card)
         }

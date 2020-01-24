@@ -32,11 +32,13 @@ class OrdersAsync(private val controller : BaseUIController) : AsyncTask<Void, V
     override fun onPreExecute() {
         controller.displayPane.children.clear()
         controller.isLoading = true
+        controller.addIndicator()
         println("LoadingOrderStart")
     }
 
     override fun onPostExecute(updateCard: UpdateCard) {
         controller.isLoading = false
+        controller.removeIndicator()
         for (card in controller.addedYacht) {
             controller.displayPane.children.add(card.card)
         }

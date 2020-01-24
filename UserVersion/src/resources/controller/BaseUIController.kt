@@ -4,6 +4,7 @@ import javafx.fxml.FXML
 import javafx.geometry.Insets
 import javafx.scene.Scene
 import javafx.scene.control.Button
+import javafx.scene.control.ProgressIndicator
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
 import resources.Yacht
@@ -37,6 +38,14 @@ class BaseUIController : Base() {
 
     @FXML
     lateinit var communicationButton: Button
+
+    fun addIndicator() {
+        displayPane.children.add(indicator)
+    }
+
+    fun removeIndicator() {
+        displayPane.children.remove(indicator)
+    }
 
     fun activateAbility() {
         val auth = databaseGetter.getAuthFromCustomerId(user.customerId)
@@ -93,11 +102,15 @@ class BaseUIController : Base() {
     private fun getLoginCardWithAction() : LoginCard {
         val loginCard = LoginCard()
         loginCard.getLoginButton().setOnAction {
-            LoginAsync(this).execute(loginCard)
+            if (!isLoading) {
+                LoginAsync(this).execute(loginCard)
+            }
         }
 
         loginCard.getRegisterButton().setOnAction {
-            RegistrationAsync(this).execute(loginCard)
+            if (!isLoading) {
+                RegistrationAsync(this).execute(loginCard)
+            }
         }
         return loginCard
     }

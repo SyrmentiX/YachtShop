@@ -2,6 +2,7 @@ package resources.controller
 
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
+import javafx.scene.control.ProgressIndicator
 import javafx.stage.Stage
 import resources.*
 import resources.cards.OrderCard
@@ -22,6 +23,7 @@ open class Base {
     val sender = DatabaseSender()
     val databaseClassParser = DatabaseClassParser()
     val stage : Stage = Stage()
+    val indicator = fabric.getLoadIndicator()
     var isLoading = false
 
     init {

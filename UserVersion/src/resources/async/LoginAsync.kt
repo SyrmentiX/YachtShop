@@ -4,7 +4,6 @@ import com.victorlaerte.asynctask.AsyncTask
 import resources.cards.LoginCard
 import resources.controller.BaseUIController
 import resources.controller.nonExitedUserError
-import sun.rmi.runtime.Log
 
 class LoginAsync(private val controller : BaseUIController) : AsyncTask<LoginCard, Void, Triple<Int,String, LoginCard>>() {
     override fun progressCallback(vararg p0: Void?) {

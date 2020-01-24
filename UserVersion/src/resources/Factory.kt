@@ -1026,4 +1026,13 @@ class Factory {
             }
         }
     }
+
+    fun getLoadIndicator() : ProgressIndicator {
+        return object : ProgressIndicator() {
+            init {
+                prefWidth = 800.0
+                prefHeight = 580.0
+            }
+        }
+    }
 }

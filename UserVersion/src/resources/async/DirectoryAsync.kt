@@ -2,6 +2,7 @@ package resources.async
 
 import com.victorlaerte.asynctask.AsyncTask
 import javafx.scene.Scene
+import javafx.scene.control.ProgressIndicator
 import resources.Yacht
 import resources.cards.YachtCard
 import resources.cards.YachtDescriptionCard
@@ -17,9 +18,11 @@ class DirectoryAsync(private val controller: BaseUIController) : AsyncTask<Void,
         controller.displayPane.children.clear()
         println("DirectoryLoadingStarted")
         controller.isLoading = true
+        controller.addIndicator()
     }
 
     override fun onPostExecute(cardList: ArrayList<YachtCard>) {
+        controller.removeIndicator()
         println("DirectoryLoadingEnded")
         for (card in cardList) {
             controller.displayPane.children.add(card.card)

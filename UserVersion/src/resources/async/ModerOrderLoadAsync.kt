@@ -14,10 +14,12 @@ class ModerOrderLoadAsync(private val controller : BaseUIController) : AsyncTask
     override fun onPreExecute() {
         controller.isLoading = true
         controller.displayPane.children.clear()
+        controller.addIndicator()
         println("ModerOrderLoadingStart")
     }
 
     override fun onPostExecute(moderCards: ArrayList<ModerOrderCard>) {
+        controller.removeIndicator()
         for (card in moderCards) {
             controller.displayPane.children.add(card.card)
         }

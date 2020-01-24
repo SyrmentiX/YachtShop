@@ -12,12 +12,14 @@ class RegistrationAsync(private val controller : BaseUIController) : AsyncTask<L
 
     override fun onPreExecute() {
         controller.displayPane.children.clear()
+        controller.addIndicator()
         println("RegisterLoadingStarted")
         controller.isLoading = true
     }
 
     override fun onPostExecute(registerCard: RegisterCard?) {
         println("RegisterLoadingEnded")
+        controller.removeIndicator()
         controller.displayPane.children.add(registerCard?.card)
         controller.isLoading = false
     }

@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5aabe45-515f-4616-8959-b53167c679c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jfx_asynctask_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/AccessoryWindowAsync.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/DirectoryAsync.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/LoginAsync.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/ModerOrderLoadAsync.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/OrdersAsync.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/RegistrationAsync.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/SendOrderAsync.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/async/UserLoaderAsync.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserVersion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/UserVersion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/cards/YachtCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/cards/YachtCard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/FXML/yachtAdditions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/FXML/yachtAdditions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Factory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/async/DirectoryAsync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/async/DirectoryAsync.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/async/LoginAsync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/async/LoginAsync.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/async/RegistrationAsync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/async/RegistrationAsync.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/controller/Base.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/controller/Base.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/controller/BaseUIController.kt" afterDir="false" />
     </list>
@@ -282,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579779430766</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add ASyncLoading">
+      <created>1579839972419</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1579839972419</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -297,7 +298,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="basic setup" />
     <MESSAGE value="add generation YachtWindow" />
     <MESSAGE value="add button reaction" />
     <MESSAGE value="add button reaction, bucket" />
@@ -322,7 +322,8 @@
     <MESSAGE value="Add AllOrderGetter AllCustomersGetter" />
     <MESSAGE value="Add User identify" />
     <MESSAGE value="add Moder add Admin panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Moder add Admin panel" />
+    <MESSAGE value="add ASyncLoading" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ASyncLoading" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="197" key="#Project_Structure" timestamp="1579155571000">
@@ -341,10 +342,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="83" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1579660982706" />
-    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579839915568">
+    <state x="454" y="25" key="CommitChangelistDialog2" timestamp="1579841816131">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579839915568" />
+    <state x="454" y="25" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579841816131" />
     <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1577864475064">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -354,25 +355,25 @@
     </state>
     <state x="506" y="172" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1579792328673" />
     <state x="607" y="216" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1579155563835" />
-    <state width="1557" height="204" key="GridCell.Tab.0.bottom" timestamp="1579839915578">
+    <state width="1557" height="204" key="GridCell.Tab.0.bottom" timestamp="1579841816146">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="204" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579839915578" />
+    <state width="1557" height="204" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579841816146" />
     <state width="1877" height="363" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311379" />
-    <state width="1557" height="204" key="GridCell.Tab.0.center" timestamp="1579839915578">
+    <state width="1557" height="204" key="GridCell.Tab.0.center" timestamp="1579841816146">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="204" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579839915578" />
+    <state width="1557" height="204" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579841816146" />
     <state width="1877" height="363" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311378" />
-    <state width="1557" height="204" key="GridCell.Tab.0.left" timestamp="1579839915577">
+    <state width="1557" height="204" key="GridCell.Tab.0.left" timestamp="1579841816146">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="204" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579839915577" />
+    <state width="1557" height="204" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579841816146" />
     <state width="1877" height="363" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311378" />
-    <state width="1557" height="204" key="GridCell.Tab.0.right" timestamp="1579839915578">
+    <state width="1557" height="204" key="GridCell.Tab.0.right" timestamp="1579841816146">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="204" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579839915578" />
+    <state width="1557" height="204" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579841816146" />
     <state width="1877" height="363" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1579158311379" />
     <state width="1557" height="218" key="GridCell.Tab.1.bottom" timestamp="1579838418914">
       <screen x="0" y="0" width="1600" height="860" />
@@ -432,16 +433,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/resources/controller/BaseUIController.kt</url>
-          <line>70</line>
+          <line>79</line>
           <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/resources/controller/Base.kt</url>
-          <line>29</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
