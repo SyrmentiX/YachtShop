@@ -5,7 +5,7 @@ import javafx.scene.layout.HBox
 import resources.Yacht
 import resources.fabric
 
-class YachtCard(yacht: Yacht) {
+class YachtCard(val yacht: Yacht) {
     var card = fabric.getYachtCard(yacht)
 
     fun getBuyButton() : Button {

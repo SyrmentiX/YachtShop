@@ -22,10 +22,12 @@ open class Base {
     val sender = DatabaseSender()
     val databaseClassParser = DatabaseClassParser()
     val stage : Stage = Stage()
+    var isLoading = false
 
     init {
         user.firstName = "Kek"
         user.secondName = "Stan"
+        this.stage.setOnCloseRequest { isSubWindowShow = false }
     }
 
     fun deleteAllNotLocalYacht() {
